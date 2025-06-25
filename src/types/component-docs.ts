@@ -26,4 +26,5 @@ export interface ComponentExample {
   code: string
   props: Record<string, any>
   emits?: Record<string, any>
+  _customWidth?: number
 } 
