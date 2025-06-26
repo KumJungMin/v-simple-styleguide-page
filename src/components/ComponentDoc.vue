@@ -47,7 +47,7 @@
       </table>
     </section>
 
-    <section v-for="example in doc.examples" :key="example.title" class="example-section">
+    <section v-for="example in localExamples" :key="example.title" class="example-section">
       <h2>{{ example.title }}</h2>
       <div class="description" v-html="renderMarkdown(example.description)"></div>
       
@@ -97,6 +97,7 @@
             v-model.number="example.props[key]"
           >
         </div>
+        <button class="rerender-btn" @click="rerenderExample(example)">리렌더링</button>
       </div>
 
       <div class="emits-log" v-if="example.emits">
@@ -129,6 +130,12 @@ const props = defineProps<{
 }>()
 
 const eventLogs = ref<Record<string, Array<{ event: string; payload: any; timestamp: number }>>>({})
+
+const localExamples = ref(props.doc.examples.map(e => ({ ...e })))
+
+watch(() => props.doc.examples, (newVal) => {
+  localExamples.value = newVal.map(e => ({ ...e }))
+}, { deep: true })
 
 const renderedDescription = computed(() => {
   return md.render(props.doc.description)
@@ -289,6 +296,53 @@ function renderToIframe(example: ComponentExample) {
 watch(() => props.doc.examples.map(e => e.props), () => {
   props.doc.examples.forEach(ex => renderToIframe(ex))
 }, { deep: true })
+
+function propsToCodeString(props: Record<string, any>) {
+  return Object.entries(props)
+    .map(([key, value]) => {
+      if (typeof value === 'string') {
+        // 문자열이지만 true/false/숫자처럼 보이면 바인딩
+        if (value === 'true' || value === 'false' || /^\d+$/.test(value)) {
+          return `:${key}="${value}"`
+        }
+        return `${key}="${value}"`
+      }
+      if (typeof value === 'boolean') {
+        return value ? key : ''
+      }
+      if (typeof value === 'number') {
+        return `:${key}="${value}"`
+      }
+      return ''
+    })
+    .filter(Boolean)
+    .join(' ')
+}
+
+function updateExampleCode(example: ComponentExample) {
+  // 기존 코드에서 태그명, children 추출
+  const match = example.code.match(/^<([A-Za-z0-9_]+)[^>]*>([\s\S]*)<\/[A-Za-z0-9_]+>$/)
+  if (match) {
+    const tag = match[1]
+    const children = match[2]
+    example.code = `<${tag} ${propsToCodeString({ ...example.props })}>${children}</${tag}>`
+    console.log('example.code',  example.code)
+  } else {
+    // self-closing 태그 등은 단순 치환
+    const tagMatch = example.code.match(/^<([A-Za-z0-9_]+)[^>]*\/>$/)
+    if (tagMatch) {
+      const tag = tagMatch[1]
+      example.code = `<${tag} ${propsToCodeString(example.props)} />`
+    }
+  }
+  // 배열 자체를 갱신하여 Vue 반응성 보장
+  props.doc.examples = [...props.doc.examples]
+}
+
+function rerenderExample(example: ComponentExample) {
+  updateExampleCode(example)
+  renderToIframe(example)
+}
 </script>
 
 <style scoped>
@@ -444,5 +498,19 @@ pre {
   color: #666;
   text-align: center;
   padding: 1rem;
+}
+
+.rerender-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.rerender-btn:hover {
+  background: #1976D2;
 }
 </style> 

@@ -28,20 +28,22 @@ import { ref, computed } from 'vue'
 import ComponentDoc from './components/ComponentDoc.vue'
 import Button from './components/ui/Button.vue'
 import { buttonDoc } from './docs/button'
+import Modal from './components/ui/Modal.vue'
+import { modalDoc } from './docs/modal'
 
 const components = [
   { name: 'Button', component: Button, doc: buttonDoc },
+  { name: 'Modal', component: Modal, doc: modalDoc },
 ]
 
 const currentComponent = ref(components[0]?.name)
 
 const currentDoc = computed(() => {
-  return components.find(c => c.name === currentComponent.value)?.doc
+  return components.find(c => c.name === currentComponent.value)?.doc || components[0].doc
 })
 
-
 const currentComponentInstance = computed(() => {
-  return components.find(c => c.name === currentComponent.value)?.component
+  return components.find(c => c.name === currentComponent.value)?.component || components[0].component
 })
 </script>
 
