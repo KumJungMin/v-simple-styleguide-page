@@ -15,9 +15,9 @@ An interactive styleguide module for Vue 3 components. It provides a playground 
 ## 📦 Installation
 
 ```bash
-npm install @lux/vue-styleguide-lib
+npm install vue-styleguide-lib
 # or
-yarn add @lux/vue-styleguide-lib
+yarn add vue-styleguide-lib
 ```
 
 ## 🎯 Getting Started
@@ -27,7 +27,7 @@ yarn add @lux/vue-styleguide-lib
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import { createStyleguide } from '@lux/vue-styleguide-lib'
+import { createStyleguide } from 'vue-styleguide-lib'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -126,7 +126,7 @@ A clickable button component.
 </template>
 
 <script setup lang="ts">
-import { StyleguideContainer } from '@lux/vue-styleguide-lib'
+import { StyleguideContainer } from 'vue-styleguide-lib'
 import buttonDoc from './docs/Button.doc.ts'
 import modalDoc from './docs/Modal.doc.ts'
 
@@ -147,7 +147,7 @@ const docs = [buttonDoc, modalDoc]
 </template>
 
 <script setup lang="ts">
-import { WidgetComponentDoc } from '@lux/vue-styleguide-lib'
+import { WidgetComponentDoc } from 'vue-styleguide-lib'
 import buttonDoc from './docs/Button.doc.ts'
 import Button from './components/Button.vue'
 </script>
@@ -158,7 +158,7 @@ import Button from './components/Button.vue'
 ```typescript
 // main.ts
 import { createApp } from 'vue'
-import { createStyleguide } from '@lux/vue-styleguide-lib'
+import { createStyleguide } from 'vue-styleguide-lib'
 import App from './App.vue'
 
 const app = createApp(App)

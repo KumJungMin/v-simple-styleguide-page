@@ -1,5 +1,5 @@
 {
-  "name": "@lux/vue-styleguide-lib",
+  "name": "vue-styleguide-lib",
   "version": "1.0.0",
   "description": "Vue 3 interactive styleguide library",
   "keywords": ["vue", "vue3", "styleguide", "component", "playground", "documentation"],

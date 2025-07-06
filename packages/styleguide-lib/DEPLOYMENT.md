@@ -18,7 +18,7 @@ npm whoami
 
 ```json
 {
-  "name": "@lux/vue-styleguide-lib",
+  "name": "vue-styleguide-lib",
   "version": "1.0.0"
 }
 ```

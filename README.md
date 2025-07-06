@@ -19,7 +19,7 @@ Vue 3 컴포넌트를 위한 인터랙티브 스타일가이드 모듈입니다.
 ```typescript
 // main.ts
 import { createApp } from 'vue'
-import { createStyleguide } from '@lux/vue-styleguide-lib'
+import { createStyleguide } from 'vue-styleguide-lib'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -121,7 +121,7 @@ export default {
 </template>
 
 <script setup lang="ts">
-import { StyleguideContainer } from '@lux/vue-styleguide-lib'
+import { StyleguideContainer } from 'vue-styleguide-lib'
 import buttonDoc from './docs/Button.doc.ts'
 import modalDoc from './docs/Modal.doc.ts'
 
@@ -142,7 +142,7 @@ const docs = [buttonDoc, modalDoc]
 </template>
 
 <script setup lang="ts">
-import { WidgetComponentDoc } from '@lux/vue-styleguide-lib'
+import { WidgetComponentDoc } from 'vue-styleguide-lib'
 import buttonDoc from './docs/Button.doc.ts'
 import Button from './components/Button.vue'
 </script>
@@ -153,7 +153,7 @@ import Button from './components/Button.vue'
 ```typescript
 // main.ts
 import { createApp } from 'vue'
-import { createStyleguide } from '@lux/vue-styleguide-lib'
+import { createStyleguide } from 'vue-styleguide-lib'
 import App from './App.vue'
 
 const app = createApp(App)
