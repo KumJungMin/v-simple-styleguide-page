@@ -1,3 +1,3 @@
-export function formatTimestamp(ts: number): string {
-  return new Date(ts).toLocaleTimeString()
+export function formatTimestamp(timestamp: number): string {
+  return new Date(timestamp).toLocaleTimeString()
 } 
