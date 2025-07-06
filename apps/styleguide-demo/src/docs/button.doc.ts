@@ -55,7 +55,7 @@ export default {
       description: '버튼 클릭 시 발생하는 이벤트'
     }
   ],
-  namedSlots: {
+  slotExamples: {
     default: '<h1>안녕! 난 버튼</h1>'
   },
   slots: [

@@ -57,7 +57,7 @@ export default {
     }
   ],
   // named slot 예제
-  namedSlots: {
+  slotExamples: {
     header: '<h3 style="color: #2563eb; margin: 0;">🎉 환영합니다!</h3>',
     default: `
       <div style="text-align: center;">

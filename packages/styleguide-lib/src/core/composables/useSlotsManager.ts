@@ -25,8 +25,8 @@ export function useSlotsManager(options: SlotsManagerOptions) {
     Object.keys(slotEdits).forEach(key => delete slotEdits[key])
     
     const doc = currentDoc.value
-    if (doc.namedSlots) {
-      Object.entries(doc.namedSlots).forEach(([name, content]) => {
+    if (doc.slotExamples) {
+      Object.entries(doc.slotExamples).forEach(([name, content]) => {
         slotEdits[name] = content
       })
     }
@@ -44,9 +44,9 @@ export function useSlotsManager(options: SlotsManagerOptions) {
     if (Object.keys(editedSlots).length > 0) {
       return editedSlots
     }
-    const namedSlots = getNamedSlots()
-    if (Object.keys(namedSlots).length > 0) {
-      return namedSlots
+    const slotExamples = getSlotExamples()
+    if (Object.keys(slotExamples).length > 0) {
+      return slotExamples
     }
     return ''
   }
@@ -63,19 +63,19 @@ export function useSlotsManager(options: SlotsManagerOptions) {
     return editedSlots
   }
 
-  function getNamedSlots(): Record<string, string> {
-    const namedSlots: Record<string, string> = {}
+  function getSlotExamples(): Record<string, string> {
+    const slotExamples: Record<string, string> = {}
     const doc = currentDoc.value
     
-    if (doc.namedSlots) {
-      Object.entries(doc.namedSlots).forEach(([name, content]) => {
+    if (doc.slotExamples) {
+      Object.entries(doc.slotExamples).forEach(([name, content]) => {
         if (content && content.trim()) {
-          namedSlots[name] = content
+          slotExamples[name] = content
         }
       })
     }
     
-    return namedSlots
+    return slotExamples
   }
 
   function startEditSlot(slotName: string) {
@@ -86,8 +86,8 @@ export function useSlotsManager(options: SlotsManagerOptions) {
 
   function getDefaultSlotValue(slotName: string): string {
     const doc = currentDoc.value
-    if (doc.namedSlots && doc.namedSlots[slotName]) {
-      return doc.namedSlots[slotName]
+    if (doc.slotExamples && doc.slotExamples[slotName]) {
+      return doc.slotExamples[slotName]
     }
     return ''
   }
@@ -117,7 +117,7 @@ export function useSlotsManager(options: SlotsManagerOptions) {
     slotEdits,
     editingSlot,
     currentSlotEdit,
-    
+
     initializeSlotEdits,
     getSlotContent,
     startEditSlot,
