@@ -2,6 +2,7 @@
 # Vue 3 Styleguide Library
 
 An interactive styleguide module for Vue 3 components. It provides a playground to edit and preview component **Props**, **Emits**, and **Slots** in real time.
+- demo(https://prismatic-brioche-395ab1.netlify.app/)
 
 ## 🚀 Features
 
