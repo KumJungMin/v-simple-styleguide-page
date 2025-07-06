@@ -1,0 +1,40 @@
+# Source files
+src/
+*.ts
+*.vue
+*.js
+
+# Development files
+vite.config.ts
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# Build artifacts (except dist)
+*.log
+.DS_Store
+
+# Test files
+__tests__/
+*.test.*
+*.spec.*
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# IDE files
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Dependencies
+node_modules/
+
+# Temporary files
+*.tmp
+*.temp 

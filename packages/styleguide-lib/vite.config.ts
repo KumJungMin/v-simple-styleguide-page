@@ -8,6 +8,7 @@ export default defineConfig({
     vue(),
     dts({
       insertTypesEntry: true,
+      rollupTypes: true,
     }),
   ],
   build: {
@@ -15,16 +16,21 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         types: resolve(__dirname, 'src/type/index.ts'),
-        core: resolve(__dirname, 'src/core/index.ts'),
+        core: resolve(__dirname, 'src/core/index.ts')
       },
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format === 'es' ? 'esm' : 'cjs'}.js`
+      fileName: (format, entryName) => {
+        const ext = format === 'es' ? 'esm' : 'cjs'
+        return `${entryName}.${ext}.js`
+      }
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'markdown-it', 'highlight.js'],
       output: {
         globals: {
           vue: 'Vue',
+          'markdown-it': 'MarkdownIt',
+          'highlight.js': 'hljs',
         },
       },
     },

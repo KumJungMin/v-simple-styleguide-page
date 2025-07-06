@@ -4,6 +4,7 @@ import type { ComponentDoc } from '../type/component-docs'
 import { StyleguideDocsKey } from './symbols'
 
 import StyleguideContainer from './components/StyleguideContainer.vue'
+import WidgetComponentDoc from './components/ComponentDoc.vue'
 
 import './styles/styleguide-container.css'
 import hljsCSS from 'highlight.js/styles/github.css?inline'
@@ -39,6 +40,7 @@ export function createStyleguide({
 
       app.provide(StyleguideDocsKey, docsArr)
       app.component('StyleguideContainer', StyleguideContainer)
+      app.component('WidgetComponentDoc', WidgetComponentDoc)
 
       if (typeof window !== 'undefined') {
         // styleguide-container.css 주입
