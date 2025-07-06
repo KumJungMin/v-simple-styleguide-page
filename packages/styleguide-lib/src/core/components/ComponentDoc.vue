@@ -56,7 +56,7 @@
         @edit-slot="slotsManager.startEditSlot"
         @apply-slot-edit="slotsManager.applySlotEdit"
         @cancel-slot-edit="slotsManager.cancelSlotEdit"
-        @update:current-slot-edit="(value) => slotsManager.currentSlotEdit.value = value"
+        @update:current-slot-edit="(value: string) => slotsManager.currentSlotEdit.value = value"
       />
     </section>
   </div>

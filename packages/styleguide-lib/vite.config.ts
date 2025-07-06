@@ -15,7 +15,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
-        types: resolve(__dirname, 'src/type/index.ts'),
+        types: resolve(__dirname, 'src/type/component-docs.ts'),
         core: resolve(__dirname, 'src/core/index.ts')
       },
       formats: ['es', 'cjs'],
