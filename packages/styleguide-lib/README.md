@@ -1,22 +1,30 @@
+
 # Vue 3 Styleguide Library
 
-Vue 3 컴포넌트를 위한 인터랙티브 스타일가이드 모듈입니다. 컴포넌트의 Props, Emits, Slots를 실시간으로 편집하고 미리보기할 수 있는 플레이그라운드를 제공합니다.
+An interactive styleguide module for Vue 3 components. It provides a playground to edit and preview component **Props**, **Emits**, and **Slots** in real time.
 
-## 🚀 주요 기능
+## 🚀 Features
 
-- **실시간 컴포넌트 미리보기**: iframe을 통한 격리된 환경에서 컴포넌트 렌더링
-- **Props 편집**: 타입별 입력 컨트롤 (text, number, boolean, select)
-- **Emits 로깅**: 컴포넌트에서 발생하는 이벤트를 실시간으로 캡처
-- **Slots 편집**: Named slots와 default slot을 실시간으로 편집
-- **반응형 디바이스 미리보기**: 모바일, 태블릿, 데스크톱 뷰 지원
-- **마크다운 문서화**: 컴포넌트 설명을 마크다운으로 작성
+- **Live Component Preview**: Render components in an isolated iframe environment
+- **Props Editor**: Input controls by type (text, number, boolean, select)
+- **Emits Logging**: Capture component events in real time
+- **Slots Editor**: Live editing of default and named slots
+- **Responsive Preview**: Support for mobile, tablet, and desktop views
+- **Markdown Documentation**: Write component docs in Markdown
 
+## 📦 Installation
 
-## 🎯 기본 사용법
+```bash
+npm install @lux/vue-styleguide-lib
+# or
+yarn add @lux/vue-styleguide-lib
+```
 
-### 1. 라이브러리 설정
+## 🎯 Getting Started
 
-```typescript
+### 1. Library Setup
+
+```ts
 // main.ts
 import { createApp } from 'vue'
 import { createStyleguide } from '@lux/vue-styleguide-lib'
@@ -24,34 +32,33 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-// 스타일가이드 설정
 createStyleguide(app, {
   docs: [
-    // 컴포넌트 문서들...
+    // Component docs...
   ]
 })
 
 app.mount('#app')
 ```
 
-### 2. 컴포넌트 문서 작성
+### 2. Writing Component Docs
 
-```typescript
+```ts
 // docs/Button.doc.ts
 import Button from '../components/Button.vue'
 
 export default {
   title: 'Button',
   description: `
-# Button 컴포넌트
+# Button Component
 
-클릭 가능한 버튼 컴포넌트입니다.
+A clickable button component.
 
-## 사용법
+## Usage
 
 \`\`\`vue
 <Button variant="primary" size="large" @click="handleClick">
-  클릭하세요
+  Click Me
 </Button>
 \`\`\`
   `,
@@ -62,7 +69,7 @@ export default {
       type: 'string',
       required: false,
       default: 'primary',
-      description: '버튼 스타일 변형',
+      description: 'Button style variant',
       control: 'select',
       options: ['primary', 'secondary', 'danger']
     },
@@ -71,7 +78,7 @@ export default {
       type: 'string',
       required: false,
       default: 'medium',
-      description: '버튼 크기',
+      description: 'Button size',
       control: 'select',
       options: ['small', 'medium', 'large']
     },
@@ -80,40 +87,38 @@ export default {
       type: 'boolean',
       required: false,
       default: false,
-      description: '비활성화 상태'
+      description: 'Disabled state'
     }
   ],
   emits: [
     {
       name: 'click',
       payload: 'MouseEvent',
-      description: '버튼 클릭 시 발생하는 이벤트'
+      description: 'Emitted on button click'
     }
   ],
-  // Named slots 예제
-  slotExamples: {
-    default: '<span>기본 버튼 텍스트</span>',
+  namedSlots: {
+    default: '<span>Default Button Text</span>',
     icon: '<svg>...</svg>'
   },
   slots: [
     {
       name: 'default',
-      description: '버튼 내용'
+      description: 'Main button content'
     },
     {
       name: 'icon',
-      description: '버튼 아이콘'
+      description: 'Icon slot'
     }
   ]
 }
 ```
 
-### 3. 스타일가이드 페이지에서 사용
+### 3. Using in Styleguide Page
 
-#### 방법 1: StyleguideContainer 사용
+#### Method 1: Using StyleguideContainer
 
 ```vue
-<!-- StyleguidePage.vue -->
 <template>
   <div class="styleguide-page">
     <StyleguideContainer :docs="docs" />
@@ -129,7 +134,7 @@ const docs = [buttonDoc, modalDoc]
 </script>
 ```
 
-#### 방법 2: 개별 ComponentDoc 사용
+#### Method 2: Using Individual WidgetComponentDoc
 
 ```vue
 <template>
@@ -148,7 +153,7 @@ import Button from './components/Button.vue'
 </script>
 ```
 
-#### 방법 3: Plugin을 통한 전역 설정
+#### Method 3: Global Setup via Plugin
 
 ```typescript
 // main.ts
@@ -158,10 +163,10 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-// 스타일가이드 설정
+// Styleguide configuration
 createStyleguide(app, {
   docs: [
-    // 컴포넌트 문서들...
+    // Component docs...
   ]
 })
 
@@ -180,10 +185,9 @@ app.mount('#app')
 </script>
 ```
 
-### 타입 정의
+## 📘 Type Definitions
 
-```typescript
-// type/component-docs.ts
+```ts
 export interface ComponentDoc {
   title: string
   description?: string
@@ -191,7 +195,7 @@ export interface ComponentDoc {
   props?: PropDefinition[]
   emits?: EmitDefinition[]
   slots?: SlotDefinition[]
-  slotExamples?: Record<string, string>
+  namedSlots?: Record<string, string>
   examples?: any[]
 }
 
@@ -217,46 +221,44 @@ export interface SlotDefinition {
 }
 ```
 
-## 🔧 고급 사용법
+## 🔧 Advanced Usage
 
-### 커스텀 Props 컨트롤
+### Custom Prop Controls
 
-```typescript
+```ts
 {
   name: 'color',
   type: 'string',
   control: 'select',
   options: ['red', 'blue', 'green'],
-  description: '색상 선택'
+  description: 'Color options'
 }
 ```
 
-### Named Slots 예제
+### Named Slot Examples
 
-```typescript
+```ts
 {
-  slotExamples: {
-    header: '<h3 style="color: #2563eb;">커스텀 헤더</h3>',
-    default: '<p>기본 내용</p>',
-    footer: '<button>확인</button>'
+  namedSlots: {
+    header: '<h3 style="color: #2563eb;">Custom Header</h3>',
+    default: '<p>Default Content</p>',
+    footer: '<button>Confirm</button>'
   }
 }
 ```
 
-### 이벤트 로깅
-
-컴포넌트에서 발생하는 이벤트는 자동으로 캡처되어 Emits 탭에 표시됩니다:
+### Event Logging
 
 ```vue
-<!-- 컴포넌트 내부 -->
+<!-- Inside the component -->
 <button @click="$emit('click', { id: 1, value: 'test' })">
-  클릭
+  Click
 </button>
 ```
 
-### 반응형 미리보기
+### Responsive Preview
 
-```typescript
+```ts
 const deviceBreakpoints = {
   mobile: 375,
   tablet: 768,
@@ -264,12 +266,9 @@ const deviceBreakpoints = {
 }
 ```
 
-## 🎨 스타일링
-
-라이브러리는 기본 스타일을 제공하지만, 필요에 따라 커스터마이징할 수 있습니다:
+## 🎨 Styling
 
 ```css
-/* 커스텀 스타일 */
 .component-doc {
   --primary-color: #2563eb;
   --border-color: #e5e7eb;
@@ -287,17 +286,26 @@ const deviceBreakpoints = {
 }
 ```
 
-## 🔍 디버깅
+## 🔍 Debugging
 
-### 이벤트 로그 확인
-
-Emits 탭에서 실시간으로 이벤트를 확인할 수 있습니다:
+### Event Logs
 
 ```
 [12:34:56] click: { id: 1, value: "test" }
 [12:34:57] submit: { formData: {...} }
 ```
 
-### Props 변경 추적
+### Prop Change Tracking
 
-Props 변경 시 자동으로 iframe이 업데이트되어 실시간으로 결과를 확인할 수 있습니다.
+Prop changes trigger iframe updates automatically for live feedback.
+
+## 🚀 Performance Optimizations
+
+- **Iframe Isolation**: Prevents component interference with the main app
+- **Lazy Rendering**: Uses `nextTick` for efficient rendering
+- **Memory Cleanup**: Destroys old components when switching
+- **Efficient Reactivity**: Powered by `computed` and `watch`
+
+## 📝 License
+
+MIT License
