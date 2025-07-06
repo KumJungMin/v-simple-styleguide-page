@@ -1,5 +1,5 @@
 [build]
-  command = "cd apps/styleguide-demo && npm run build"
+  command = "npm install && cd packages/styleguide-lib && npm run build && cd ../../apps/styleguide-demo && npm run build"
   publish = "apps/styleguide-demo/dist"
 
 [build.environment]

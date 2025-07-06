@@ -14,8 +14,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.3.0",
-    "vue-styleguide-lib": "^1.0.2"
+    "vue": "^3.3.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

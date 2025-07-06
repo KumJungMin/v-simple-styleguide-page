@@ -17,9 +17,6 @@ importers:
       vue:
         specifier: ^3.3.0
         version: 3.5.16(typescript@5.8.3)
-      vue-styleguide-lib:
-        specifier: ^1.0.2
-        version: 1.0.2(vue@3.5.16(typescript@5.8.3))
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^4.0.0
@@ -663,12 +660,6 @@ packages:
       terser:
         optional: true
 
-  vue-styleguide-lib@1.0.2:
-    resolution: {integrity: sha512-lHKep6pVPILF0UZd+XGhneuHSjTzlFtUsgkS3t9HajT7WaqIDoqFCUsY1Tbded7TCF0rIZuV1hH9IjPYwfRCOQ==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      vue: ^3.3.0
-
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
 
@@ -1233,12 +1224,6 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.19.0
       fsevents: 2.3.3
-
-  vue-styleguide-lib@1.0.2(vue@3.5.16(typescript@5.8.3)):
-    dependencies:
-      highlight.js: 11.11.1
-      markdown-it: 13.0.2
-      vue: 3.5.16(typescript@5.8.3)
 
   vue-template-compiler@2.7.16:
     dependencies:

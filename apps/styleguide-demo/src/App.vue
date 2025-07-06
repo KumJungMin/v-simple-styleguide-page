@@ -7,6 +7,10 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import { StyleguideContainer } from '../../../packages/styleguide-lib/src'
+</script>
+
 
 <style scoped>
 .demo-app {
