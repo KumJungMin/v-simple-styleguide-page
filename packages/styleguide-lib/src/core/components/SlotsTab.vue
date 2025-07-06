@@ -5,9 +5,9 @@
       <table class="slot-table" aria-label="Component slots">
         <thead>
           <tr>
-            <th>이름</th>
-            <th>설명</th>
-            <th class="action-cell">액션</th>
+            <th>name</th>
+            <th>description</th>
+            <th class="action-cell">action</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 @click="emit('editSlot', slot.name)"
                 class="edit-btn"
               >
-                수정
+                edit
               </button>
             </td>
           </tr>
@@ -31,7 +31,7 @@
           <div class="editor-header">
             <div class="editor-title">
               <div class="editor-indicator"></div>
-              <h4>{{ editingSlot }} slot 편집</h4>
+              <h4>{{ editingSlot }} slot edit</h4>
             </div>
             <div class="editor-actions">
               <button 
@@ -41,7 +41,7 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                반영
+                apply
               </button>
               <button 
                 @click="emit('cancelSlotEdit')"
@@ -50,7 +50,7 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                취소
+                cancel
               </button>
             </div>
           </div>
@@ -59,7 +59,7 @@
               :value="props.currentSlotEdit"
               @input="emit('update:currentSlotEdit', ($event.target as HTMLTextAreaElement).value)"
               class="slot-textarea"
-              :placeholder="`${editingSlot} slot 내용을 입력하세요...`"
+              :placeholder="`${editingSlot} slot content...`"
             ></textarea>
             <div class="char-counter">
               {{ props.currentSlotEdit.length }} chars
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div v-else>
-      <p class="no-slots">이 컴포넌트는 슬롯을 지원하지 않습니다.</p>
+      <p class="no-slots">This component does not support slots.</p>
     </div>
   </div>
 </template>

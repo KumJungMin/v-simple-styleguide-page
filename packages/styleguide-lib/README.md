@@ -32,11 +32,11 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-createStyleguide(app, {
+app.use(createStyleguide(app, {
   docs: [
     // Component docs...
   ]
-})
+}))
 
 app.mount('#app')
 ```
@@ -164,11 +164,11 @@ import App from './App.vue'
 const app = createApp(App)
 
 // Styleguide configuration
-createStyleguide(app, {
+app.use(createStyleguide(app, {
   docs: [
     // Component docs...
   ]
-})
+}))
 
 app.mount('#app')
 ```

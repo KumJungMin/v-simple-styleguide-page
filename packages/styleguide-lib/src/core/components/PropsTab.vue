@@ -3,11 +3,11 @@
     <table class="props-table" aria-label="Component props">
       <thead>
         <tr>
-          <th>이름</th>
-          <th>타입</th>
-          <th>필수</th>
-          <th>설명</th>
-          <th>값 편집</th>
+          <th>name</th>
+          <th>type</th>
+          <th>required</th>
+          <th>description</th>
+          <th>edit</th>
         </tr>
       </thead>
       <tbody>

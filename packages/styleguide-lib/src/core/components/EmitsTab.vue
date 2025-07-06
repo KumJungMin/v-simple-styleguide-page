@@ -3,9 +3,9 @@
     <table class="props-table" aria-label="Component emits">
       <thead>
         <tr>
-          <th>이벤트</th>
-          <th>페이로드</th>
-          <th>설명</th>
+          <th>event</th>
+          <th>payload</th>
+          <th>description</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +18,7 @@
     </table>
 
     <div class="emits-log" v-if="props.emitLogs.length">
-      <h3>이벤트 로그</h3>
+      <h3>event log</h3>
       <div class="log-container">
         <div v-for="(log, idx) in emitLogs" :key="idx" class="log-entry">
           <span class="timestamp">{{ formatTimestamp(log.timestamp) }}</span>

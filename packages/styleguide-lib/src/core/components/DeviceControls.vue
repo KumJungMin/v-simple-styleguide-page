@@ -1,11 +1,11 @@
 <template>
   <div class="device-controls">
-    <button @click="emit('select', 'mobile')">모바일</button>
-    <button @click="emit('select', 'tablet')">태블릿</button>
-    <button @click="emit('select', 'desktop')">데스크탑</button>
-    <span class="label">커스텀:</span>
+    <button @click="emit('select', 'mobile')">mobile</button>
+    <button @click="emit('select', 'tablet')">tablet</button>
+    <button @click="emit('select', 'desktop')">desktop</button>
+    <span class="label">custom:</span>
     <input type="number" :value="props.customWidth" @input="handleCustomWidthChange" />
-    <button @click="emit('apply')">적용</button>
+    <button @click="emit('apply')">apply</button>
     <span class="px">{{ props.previewWidth }}px</span>
   </div>
 </template>
