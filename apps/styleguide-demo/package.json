@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
     "vue": "^3.3.0",
-    "v-simple-styleguide": "workspace:*"
+    "vue-styleguide-lib": "^1.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

@@ -25,11 +25,11 @@ import App from './App.vue'
 const app = createApp(App)
 
 // 스타일가이드 설정
-createStyleguide(app, {
+app.use(createStyleguide(app, {
   docs: [
     // 컴포넌트 문서들...
   ]
-})
+}))
 
 app.mount('#app')
 ```

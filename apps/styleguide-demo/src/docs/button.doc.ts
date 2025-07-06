@@ -3,11 +3,11 @@ import Button from '../components/Button.vue'
 export default {
   title: 'Button',
   description: `
-# Button 컴포넌트
+# Button Component
 
-다양한 스타일과 상태를 지원하는 버튼 컴포넌트입니다.
+A button component that supports various styles and states.
 
-## 사용법
+## Usage
 
 \`\`\`vue
 <Button variant="primary">Primary Button</Button>
@@ -15,12 +15,12 @@ export default {
 <Button variant="outline">Outline Button</Button>
 \`\`\`
 
-## 특징
+## Features
 
-- 3가지 variant 지원 (primary, secondary, outline)
-- disabled 상태 지원
-- block 모드 지원
-- 키보드 접근성 지원
+- Supports 3 variants: primary, secondary, outline
+- Supports disabled state
+- Supports block mode (full width)
+- Keyboard accessibility
   `,
   component: Button,
   props: [
@@ -29,7 +29,7 @@ export default {
       type: "'primary' | 'secondary' | 'outline'",
       required: true,
       default: 'primary',
-      description: '버튼의 스타일 variant',
+      description: 'Button style variant',
       control: 'select',
       options: ['primary', 'secondary', 'outline']
     },
@@ -38,27 +38,27 @@ export default {
       type: 'boolean',
       required: false,
       default: false,
-      description: '버튼 비활성화 여부'
+      description: 'Whether the button is disabled'
     },
     {
       name: 'block',
       type: 'boolean',
       required: false,
       default: false,
-      description: '전체 너비 사용 여부'
+      description: 'Whether the button takes up full width'
     }
   ],
   emits: [
     {
       name: 'click',
       payload: 'void',
-      description: '버튼 클릭 시 발생하는 이벤트'
+      description: 'Emitted when the button is clicked'
     }
   ],
   slotExamples: {
-    default: '<h1>안녕! 난 버튼</h1>'
+    default: '<h1>Hello! I am a button</h1>'
   },
   slots: [
-    { name: 'default', description: '버튼 내용' }
+    { name: 'default', description: 'Button content' }
   ]
-} 
+}

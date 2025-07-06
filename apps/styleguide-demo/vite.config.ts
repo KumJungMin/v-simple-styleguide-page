@@ -9,4 +9,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  define: {
+    'import.meta.glob': 'import.meta.glob'
+  }
 }) 

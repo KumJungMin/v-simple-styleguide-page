@@ -3,34 +3,34 @@ import Modal from '../components/Modal.vue'
 export default {
   title: 'Modal',
   description: `
-# Modal 컴포넌트
+# Modal Component
 
-오버레이와 함께 표시되는 모달 다이얼로그 컴포넌트입니다.
+A modal dialog component displayed with an overlay.
 
-## 사용법
+## Usage
 
 \`\`\`vue
 <Modal :visible="true" @close="handleClose">
   <template #header>
-    <h3>커스텀 헤더</h3>
+    <h3>Custom Header</h3>
   </template>
   
-  <p>모달 내용입니다.</p>
+  <p>This is the modal content.</p>
   
   <template #footer>
-    <button @click="handleClose">취소</button>
-    <button @click="handleConfirm">확인</button>
+    <button @click="handleClose">Cancel</button>
+    <button @click="handleConfirm">Confirm</button>
   </template>
 </Modal>
 \`\`\`
 
-## 특징
+## Features
 
-- 3개의 named slot 지원 (header, default, footer)
-- ESC 키로 닫기 지원
-- 오버레이 클릭으로 닫기 지원
-- 반응형 디자인
-- 부드러운 애니메이션
+- Supports 3 named slots: header, default, footer
+- Close with ESC key
+- Click overlay to close
+- Responsive design
+- Smooth animations
   `,
   component: Modal,
   props: [
@@ -39,56 +39,56 @@ export default {
       type: 'boolean',
       required: true,
       default: true,
-      description: '모달 표시 여부'
+      description: 'Whether the modal is visible'
     },
     {
       name: 'width',
       type: 'string',
       required: false,
       default: '500px',
-      description: '모달 너비'
+      description: 'Width of the modal'
     }
   ],
   emits: [
     {
       name: 'close',
       payload: 'void',
-      description: '모달 닫기 시 발생하는 이벤트'
+      description: 'Emitted when the modal is closed'
     }
   ],
-  // named slot 예제
+  // named slot examples
   slotExamples: {
-    header: '<h3 style="color: #2563eb; margin: 0;">🎉 환영합니다!</h3>',
+    header: '<h3 style="color: #2563eb; margin: 0;">🎉 Welcome!</h3>',
     default: `
       <div style="text-align: center;">
-        <p style="margin-bottom: 1rem;">이것은 named slot을 사용한 모달 예제입니다.</p>
+        <p style="margin-bottom: 1rem;">This is a modal example using named slots.</p>
         <p style="color: #6b7280; font-size: 0.875rem;">
-          header, default, footer slot을 모두 사용하여<br>
-          완전히 커스터마이징된 모달을 만들 수 있습니다.
+          By using the header, default, and footer slots,<br>
+          you can fully customize the modal.
         </p>
       </div>
     `,
     footer: `
       <button style="padding: 0.5rem 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background: white; cursor: pointer; margin-right: 0.5rem;">
-        취소
+        Cancel
       </button>
       <button style="padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; background: #2563eb; color: white; cursor: pointer;">
-        확인
+        Confirm
       </button>
     `
   },
   slots: [
     { 
       name: 'header', 
-      description: '모달 헤더 영역 (기본값: "모달 제목")'
+      description: 'Modal header area (default: "Modal Title")'
     },
     { 
       name: 'default', 
-      description: '모달 본문 내용'
+      description: 'Main content of the modal'
     },
     { 
       name: 'footer', 
-      description: '모달 푸터 영역 (버튼 등을 배치)'
+      description: 'Modal footer area (e.g., action buttons)'
     }
   ]
-} 
+}

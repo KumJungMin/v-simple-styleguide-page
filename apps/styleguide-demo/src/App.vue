@@ -1,7 +1,7 @@
 <template>
   <div class="demo-app">
     <section class="demo-section">
-      <h2>문서화 위젯 사용</h2>
+      <h2>Documentation Widget Usage</h2>
       <StyleguideContainer />
     </section>
   </div>
