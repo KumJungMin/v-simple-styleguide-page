@@ -1,65 +1,71 @@
 import type { App, Plugin } from 'vue'
 import type { ComponentDoc } from '../type/component-docs'
-import { StyleguideDocsKey, StyleguideStylesKey } from './symbols'
-import WidgetComponentDoc from './components/ComponentDoc.vue'
+
+import { StyleguideDocsKey } from './symbols'
+
 import StyleguideContainer from './components/StyleguideContainer.vue'
+
 import './styles/styleguide-container.css'
 import hljsCSS from 'highlight.js/styles/github.css?inline'
 
 interface StyleguideStyles {
-  links?: string[]       // external css links
-  inline?: string[]      // raw css strings
+  links?: string[]
+  inline?: string[]
 }
 
 interface StyleguideOptions {
-  /**
-   * Glob import result from import.meta.glob
-   * Example: const docs = import.meta.glob('./data/docs/*.doc.ts', { eager: true })
-   */
   docs: Record<string, unknown>
   visibilityProps?: string[]
   styles?: StyleguideStyles
 }
 
-export function createStyleguide({ docs, visibilityProps = ['visible','open','show','isOpen','isVisible','modelValue'], styles = {} }: StyleguideOptions): Plugin {
-  // Normalize glob import result to ComponentDoc[]
-  const docsArr: ComponentDoc[] = Object.values(docs).map((m:any)=>('default' in m? m.default:m)) as ComponentDoc[]
-
+/**
+ * Styleguide 플러그인을 생성합니다.
+ *
+ * @param docs - 스타일가이드에 사용할 컴포넌트 문서 객체입니다.
+ * @returns Vue 플러그인 객체를 반환합니다.
+ *
+ * @remarks
+ * - 앱에 StyleguideDocsKey로 컴포넌트 문서 배열을 provide합니다.
+ * - 'StyleguideContainer' 컴포넌트를 전역 등록합니다.
+ * - 브라우저 환경에서 styleguide-container.css와 highlight.js 스타일을 동적으로 주입합니다.
+ */
+export function createStyleguide({
+  docs
+}: StyleguideOptions): Plugin {
   return {
     install(app: App) {
-      // Provide docs data
+      const docsArr: ComponentDoc[] = Object.values(docs).map((m: any) => 'default' in m ? m.default : m ) as ComponentDoc[]
+
       app.provide(StyleguideDocsKey, docsArr)
-      
-      // Provide visibility props
-      app.provide('styleguide-visibility-props', visibilityProps)
-      
-      // Provide styles
-      app.provide(StyleguideStylesKey, styles)
-      
-      // Register global components
-      app.component('WidgetComponentDoc', WidgetComponentDoc)
       app.component('StyleguideContainer', StyleguideContainer)
 
-      // ---- Auto-inject global stylesheet once ----
       if (typeof window !== 'undefined') {
+        // styleguide-container.css 주입
         const href = new URL('./styles/styleguide-container.css', import.meta.url).href
-        if (!document.querySelector(`link[href="${href}"]`)) {
-          const link = document.createElement('link')
-          link.rel = 'stylesheet'
-          link.href = href
-          document.head.appendChild(link)
-        }
-      }
+        injectStylesheet(href)
 
-      // inject highlight.js style only once
-      if (typeof window !== 'undefined' && hljsCSS) {
-        if (!document.getElementById('__sg_hljs_css')) {
-          const style = document.createElement('style')
-          style.id = '__sg_hljs_css'
-          style.textContent = hljsCSS as string
-          document.head.appendChild(style)
-        }
+        // highlight.js 스타일 주입
+        if (hljsCSS)  injectInlineStyle('__sg_hljs_css', hljsCSS as string)
       }
     },
   }
-} 
+}
+
+function injectStylesheet(href: string) {
+  if (!document.querySelector(`link[href="${href}"]`)) {
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = href
+    document.head.appendChild(link)
+  }
+}
+
+function injectInlineStyle(id: string, css: string) {
+  if (!document.getElementById(id)) {
+    const style = document.createElement('style')
+    style.id = id
+    style.textContent = css
+    document.head.appendChild(style)
+  }
+}

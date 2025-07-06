@@ -31,12 +31,13 @@
 </template>
 
 <script setup lang="ts">
-import '../styles/styleguide-container.css'
 import { computed, ref, inject } from 'vue'
+
+import { Device } from '../composables/useDevicePreview'
 import type { ComponentDoc } from '../../type/component-docs'
+
 import { StyleguideDocsKey } from '../symbols'
 import WidgetComponentDoc from './ComponentDoc.vue'
-import { Device } from '../composables/useDevicePreview'
 
 interface Props {
   docs?: ComponentDoc[]
@@ -51,24 +52,16 @@ const props = withDefaults(defineProps<Props>(), {
   })
 })
 
-// Inject docs from plugin if not provided as props
 const injectedDocs = inject<ComponentDoc[]>(StyleguideDocsKey, [])
-
-const effectiveDocs = computed(() => props.docs || injectedDocs)
 
 const activeDocIndex = ref(0)
 
+const effectiveDocs = computed(() => props.docs || injectedDocs)
 const activeDoc = computed(() => {
-  if (!effectiveDocs.value || effectiveDocs.value.length === 0) {
-    return undefined
-  }
+  if (!effectiveDocs.value || effectiveDocs.value.length === 0) return undefined
+  
   return effectiveDocs.value[activeDocIndex.value] || effectiveDocs.value[0]
 })
 
-const navTabClass = (index: number) => [
-  'nav-tab',
-  {
-    'nav-tab--active': activeDocIndex.value === index
-  }
-]
+const navTabClass = (index: number) => ['nav-tab', { 'nav-tab--active': activeDocIndex.value === index }]
 </script>

@@ -23,7 +23,6 @@ export interface ComponentDoc {
   component?: any // Vue component to render
   props: PropDefinition[]
   emits: EmitDefinition[]
-  examples?: ComponentExample[]
   slot?: string
   slots?: SlotDefinition[]
   defaultSlot?: string

@@ -1,5 +1,5 @@
 <template>
-  <button
+  <button 
     :class="buttonClasses"
     :disabled="disabled"
     @click="handleClick"
