@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "vue": "^3.3.0",
-    "vue-styleguide-lib": "^1.0.1"
+    "vue-styleguide-lib": "^1.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
