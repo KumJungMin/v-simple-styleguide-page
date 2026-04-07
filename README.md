@@ -1,6 +1,6 @@
 # Vue 3 Styleguide Library
 
-Vue 3 컴포넌트를 위한 인터랙티브 스타일가이드 모듈입니다. 컴포넌트의 Props, Emits, Slots를 실시간으로 편집하고 미리보기할 수 있는 플레이그라운드를 제공합니다.
+Vue 3 컴포넌트를 위한 인터랙티브 스타일가이드 모듈입니다. 컴포넌트의 Props, Emits, Slots를 실시간으로 편집하고 미리보기할 수 있는 플레이그라운드를 제공합니다. (<a href="https://style-guide-list-demo.netlify.app/">demo</a>)
 
 ## 🚀 주요 기능
 
