@@ -8,7 +8,7 @@ export interface DevicePreviewOptions {
 }
 
 export function useDevicePreview(options: DevicePreviewOptions) {
-  const selectedDevice = ref<Device>('mobile')
+  const selectedDevice = ref<Device>('desktop')
   const previewWidth = ref(0)
   const customWidth = ref(0)
 

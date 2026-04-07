@@ -1,5 +1,15 @@
 <template>
   <div v-if="effectiveDoc" class="component-doc">
+    <header class="component-doc-header">
+      <p class="component-doc-eyebrow">Component</p>
+      <h2 class="component-doc-title">{{ effectiveDoc.title }}</h2>
+      <div class="component-doc-meta">
+        <span class="component-doc-badge">props {{ effectiveDoc.props?.length ?? 0 }}</span>
+        <span class="component-doc-badge">events {{ effectiveDoc.emits?.length ?? 0 }}</span>
+        <span class="component-doc-badge">slots {{ effectiveDoc.slots?.length ?? 0 }}</span>
+      </div>
+    </header>
+
     <div class="description" v-html="renderedDescription"></div>
 
     <section class="playground-section">
@@ -7,6 +17,7 @@
       <DeviceControls
         :custom-width="customWidth"
         :preview-width="previewWidth"
+        :selected-device="selectedDevice"
         @apply="onApply"
         @select="onSelect"
         @update:custom-width="updateCustomWidth"
@@ -102,7 +113,7 @@ const resolvedBreakpoints = computed<DeviceBreakpoints>(() => {
   }
 })
 
-const { previewWidth, customWidth, setPreviewWidth, updateCustomWidth, applyCustomWidth } = useDevicePreview({
+const { previewWidth, customWidth, selectedDevice, setPreviewWidth, updateCustomWidth, applyCustomWidth } = useDevicePreview({
   getBreakpoints: () => resolvedBreakpoints.value,
 })
 

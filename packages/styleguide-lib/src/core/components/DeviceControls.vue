@@ -1,11 +1,25 @@
 <template>
   <div class="device-controls">
-    <button @click="emit('select', 'mobile')">mobile</button>
-    <button @click="emit('select', 'tablet')">tablet</button>
-    <button @click="emit('select', 'desktop')">desktop</button>
+    <div class="device-controls__group">
+      <button
+        :class="['device-controls__button', { 'device-controls__button--active': props.selectedDevice === 'mobile' }]"
+        @click="emit('select', 'mobile')"
+      >mobile</button>
+      <button
+        :class="['device-controls__button', { 'device-controls__button--active': props.selectedDevice === 'tablet' }]"
+        @click="emit('select', 'tablet')"
+      >tablet</button>
+      <button
+        :class="['device-controls__button', { 'device-controls__button--active': props.selectedDevice === 'desktop' }]"
+        @click="emit('select', 'desktop')"
+      >desktop</button>
+    </div>
     <span class="label">custom:</span>
-    <input type="number" :value="props.customWidth" @input="handleCustomWidthChange" />
-    <button @click="emit('apply')">apply</button>
+    <input class="device-controls__input" type="number" :value="props.customWidth" @input="handleCustomWidthChange" />
+    <button
+      :class="['device-controls__button', { 'device-controls__button--active': props.selectedDevice === 'custom' }]"
+      @click="emit('apply')"
+    >apply</button>
     <span class="px">{{ props.previewWidth }}px</span>
   </div>
 </template>
@@ -17,6 +31,7 @@ import type { Device } from '../composables/useDevicePreview';
 const props = withDefaults(defineProps<{
   previewWidth: number;
   customWidth: number;
+  selectedDevice: Device;
 }>(), {});
 
 const emit = defineEmits<{

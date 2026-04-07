@@ -1,5 +1,5 @@
 <template>
-  <button 
+  <button
     :class="buttonClasses"
     :disabled="disabled"
     @click="handleClick"
@@ -13,15 +13,17 @@
 import { computed } from 'vue'
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
   block?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
+  size: 'md',
   disabled: false,
-  block: false
+  block: false,
 })
 
 const emit = defineEmits<{
@@ -31,19 +33,20 @@ const emit = defineEmits<{
 const buttonClasses = computed(() => [
   'button',
   `button--${props.variant}`,
+  `button--${props.size}`,
   {
     'button--disabled': props.disabled,
-    'button--block': props.block
-  }
+    'button--block': props.block,
+  },
 ])
 
-const handleClick = (event: MouseEvent) => {
+function handleClick() {
   if (!props.disabled) {
     emit('click')
   }
 }
 
-const handleKeyDown = (event: KeyboardEvent) => {
+function handleKeyDown(event: KeyboardEvent) {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
     if (!props.disabled) {
@@ -58,58 +61,73 @@ const handleKeyDown = (event: KeyboardEvent) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
-  text-decoration: none;
+  min-width: 118px;
+  border: 1px solid #6d675d;
+  border-radius: 16px;
+  background: #2c2a25;
+  color: #f6f0e6;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
-  min-height: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, color 160ms ease;
 }
 
-.button:focus {
-  outline: 2px solid #3b82f6;
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #f6f0e6;
+}
+
+.button:focus-visible {
+  outline: 2px solid #f6f0e6;
   outline-offset: 2px;
 }
 
-.button--primary {
-  background-color: #3b82f6;
-  color: white;
+.button--sm {
+  min-height: 2.25rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
 }
 
-.button--primary:hover:not(:disabled) {
-  background-color: #2563eb;
+.button--md {
+  min-height: 2.75rem;
+  padding: 0.6rem 1.15rem;
+  font-size: 1rem;
+}
+
+.button--lg {
+  min-height: 3.25rem;
+  padding: 0.78rem 1.3rem;
+  font-size: 1.05rem;
+}
+
+.button--primary {
+  background: #f5efe3;
+  border-color: #f5efe3;
+  color: #161513;
 }
 
 .button--secondary {
-  background-color: #6b7280;
-  color: white;
+  background: #393731;
 }
 
-.button--secondary:hover:not(:disabled) {
-  background-color: #4b5563;
+.button--danger {
+  background: rgba(226, 75, 74, 0.14);
+  border-color: rgba(226, 75, 74, 0.54);
+  color: #ffb4ab;
 }
 
-.button--outline {
-  background-color: transparent;
-  color: #3b82f6;
-  border-color: #3b82f6;
+.button--ghost {
+  background: transparent;
 }
 
-.button--outline:hover:not(:disabled) {
-  background-color: #3b82f6;
-  color: white;
-}
-
-.button--disabled {
-  opacity: 0.5;
+.button--disabled,
+.button:disabled {
+  opacity: 0.38;
   cursor: not-allowed;
+  transform: none;
 }
 
 .button--block {
   width: 100%;
 }
-</style> 
+</style>

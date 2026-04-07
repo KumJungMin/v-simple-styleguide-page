@@ -5,7 +5,7 @@
         <tr>
           <th>name</th>
           <th>type</th>
-          <th>required</th>
+          <th>default</th>
           <th>description</th>
           <th>edit</th>
         </tr>
@@ -14,7 +14,7 @@
         <tr v-for="prop in props.props" :key="prop.name">
           <td>{{ prop.name }}</td>
           <td><code>{{ prop.type }}</code></td>
-          <td class="text-center">{{ prop.required ? '✓' : '' }}</td>
+          <td>{{ formatDefaultValue(prop.default, prop.required) }}</td>
           <td>{{ prop.description }}</td>
           <td>
             <div class="flex flex-col gap-1">
@@ -90,5 +90,17 @@ function emitCurrentProps() {
 
 function getMode(prop: PropDefinition): InputMode {
   return getInputMode(prop)
+}
+
+function formatDefaultValue(value: unknown, required?: boolean) {
+  if (value === undefined) {
+    return required ? 'required' : '—'
+  }
+
+  if (typeof value === 'string') {
+    return `"${value}"`
+  }
+
+  return String(value)
 }
 </script>

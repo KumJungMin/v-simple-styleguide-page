@@ -1,6 +1,7 @@
 <template>
   <div class="styleguide-container">
     <nav v-if="effectiveDocs.length > 0" class="styleguide-nav">
+      <p class="styleguide-nav-label">Components</p>
       <div class="nav-tabs">
         <button
           v-for="(doc, index) in effectiveDocs"
@@ -8,6 +9,7 @@
           :class="navTabClass(index)"
           @click="activeDocIndex = index"
         >
+          <span class="nav-tab-dot" aria-hidden="true"></span>
           {{ doc.title }}
         </button>
       </div>

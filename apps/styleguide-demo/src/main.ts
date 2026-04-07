@@ -1,15 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './style.css'
 import { createStyleguide } from '../../../packages/styleguide-lib/src'
-
-// Import docs using glob pattern (like Storybook)
-const docs = import.meta.glob('./docs/*.doc.ts', { eager: true })
+import { componentDocs } from './docs'
 
 const app = createApp(App)
 
-// Use the styleguide plugin
-app.use(createStyleguide({ 
-  docs: Object.values(docs).map((doc: any) => doc.default) as unknown as Record<string, unknown>
+app.use(createStyleguide({
+  docs: componentDocs,
 }))
 
-app.mount('#app') 
+app.mount('#app')

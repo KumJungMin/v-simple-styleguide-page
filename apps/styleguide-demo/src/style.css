@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  font-family: "Pretendard Variable", "Pretendard", "SUIT Variable", "IBM Plex Sans KR", sans-serif;
+  background: #050505;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(51, 86, 126, 0.18), transparent 24%),
+    radial-gradient(circle at right top, rgba(239, 159, 39, 0.08), transparent 16%),
+    #050505;
+  color: #f8f4ea;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
