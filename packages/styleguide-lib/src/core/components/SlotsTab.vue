@@ -31,7 +31,7 @@
           <div class="editor-header">
             <div class="editor-title">
               <div class="editor-indicator"></div>
-              <h4>{{ editingSlot }} slot edit</h4>
+              <h4>{{ props.editingSlot }} slot edit</h4>
             </div>
             <div class="editor-actions">
               <button 
@@ -59,7 +59,7 @@
               :value="props.currentSlotEdit"
               @input="emit('update:currentSlotEdit', ($event.target as HTMLTextAreaElement).value)"
               class="slot-textarea"
-              :placeholder="`${editingSlot} slot content...`"
+              :placeholder="`${props.editingSlot} slot content...`"
             ></textarea>
             <div class="char-counter">
               {{ props.currentSlotEdit.length }} chars

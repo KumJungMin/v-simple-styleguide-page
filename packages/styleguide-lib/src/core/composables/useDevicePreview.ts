@@ -1,41 +1,61 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue'
 
-export type Device = 'mobile' | 'tablet' | 'desktop' | 'custom';
+export type Device = 'mobile' | 'tablet' | 'desktop' | 'custom'
+export type DeviceBreakpoints = Record<Device, number>
 
+export interface DevicePreviewOptions {
+  getBreakpoints: () => DeviceBreakpoints
+}
 
-/**
- * 컴포넌트 preview 공간의 너비를 결정하는 컴포저블입니다.
- * 
- * @param breakpoints 각 디바이스별 너비를 나타내는 객체입니다. (예: { mobile: 375, tablet: 768, desktop: 1200 })
- * @returns 
- * - `previewWidth`: 현재 선택된 디바이스의 프리뷰 너비를 나타내는 ref입니다.
- * - `customWidth`: 커스텀 프리뷰 너비를 나타내는 ref입니다.
- * - `setPreviewWidth(device: Device)`: 디바이스를 선택하여 프리뷰 너비를 변경하는 함수입니다.
- * - `updateCustomWidth(width: number)`: 커스텀 프리뷰 너비를 업데이트하는 함수입니다.
- * - `applyCustomWidth()`: 커스텀 프리뷰 너비를 적용하는 함수입니다.
- */
-export function useDevicePreview(breakpoints: Record<Device, number>) {
-  const previewWidth = ref(breakpoints.mobile);
-  const customWidth  = ref(breakpoints.mobile);
+export function useDevicePreview(options: DevicePreviewOptions) {
+  const selectedDevice = ref<Device>('mobile')
+  const previewWidth = ref(0)
+  const customWidth = ref(0)
+
+  watch(
+    () => options.getBreakpoints(),
+    breakpoints => {
+      if (!customWidth.value) {
+        customWidth.value = breakpoints.custom || breakpoints.mobile
+      }
+
+      previewWidth.value = getWidthForDevice(selectedDevice.value, breakpoints, customWidth.value)
+    },
+    { immediate: true, deep: true }
+  )
 
   function setPreviewWidth(device: Device) {
-    if (device === 'custom') previewWidth.value = customWidth.value || breakpoints.mobile;
-    else previewWidth.value = breakpoints[device];
+    selectedDevice.value = device
+    previewWidth.value = getWidthForDevice(device, options.getBreakpoints(), customWidth.value)
   }
 
   function updateCustomWidth(width: number) {
-    customWidth.value = width;
+    const fallbackWidth = options.getBreakpoints().mobile
+    customWidth.value = Number.isFinite(width) && width > 0 ? width : fallbackWidth
+
+    if (selectedDevice.value === 'custom') {
+      previewWidth.value = customWidth.value
+    }
   }
 
   function applyCustomWidth() {
-    setPreviewWidth('custom');
+    setPreviewWidth('custom')
   }
 
   return {
     previewWidth,
     customWidth,
+    selectedDevice,
     setPreviewWidth,
     updateCustomWidth,
     applyCustomWidth,
-  };
+  }
+}
+
+function getWidthForDevice(device: Device, breakpoints: DeviceBreakpoints, customWidth: number) {
+  if (device === 'custom') {
+    return customWidth || breakpoints.custom || breakpoints.mobile
+  }
+
+  return breakpoints[device]
 }

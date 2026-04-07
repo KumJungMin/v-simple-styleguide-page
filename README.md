@@ -25,7 +25,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 // 스타일가이드 설정
-app.use(createStyleguide(app, {
+app.use(createStyleguide({
   docs: [
     // 컴포넌트 문서들...
   ]
@@ -159,11 +159,11 @@ import App from './App.vue'
 const app = createApp(App)
 
 // 스타일가이드 설정
-createStyleguide(app, {
+app.use(createStyleguide({
   docs: [
     // 컴포넌트 문서들...
   ]
-})
+}))
 
 app.mount('#app')
 ```
@@ -192,7 +192,6 @@ export interface ComponentDoc {
   emits?: EmitDefinition[]
   slots?: SlotDefinition[]
   slotExamples?: Record<string, string>
-  examples?: any[]
 }
 
 export interface PropDefinition {

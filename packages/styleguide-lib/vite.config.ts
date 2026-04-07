@@ -11,7 +11,8 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         types: resolve(__dirname, 'src/type/component-docs.ts'),
-        core: resolve(__dirname, 'src/core/index.ts')
+        core: resolve(__dirname, 'src/core/index.ts'),
+        shared: resolve(__dirname, 'src/shared/index.ts')
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => {

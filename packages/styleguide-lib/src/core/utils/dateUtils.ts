@@ -1,3 +1,1 @@
-export function formatTimestamp(timestamp: number): string {
-  return new Date(timestamp).toLocaleTimeString()
-} 
+export { formatTimestamp } from '../../shared/utils/dateUtils'

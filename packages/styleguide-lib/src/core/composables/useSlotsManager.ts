@@ -1,104 +1,56 @@
-import { reactive, ref, watch, computed } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import type { ComponentDoc } from '../../type/component-docs'
+import {
+  createInitialSlotEdits,
+  getDefaultSlotExample,
+  getResolvedSlotContent,
+  type SlotEditMap,
+} from '../../shared/slots/slotState'
 
 export interface SlotsManagerOptions {
-  doc: ComponentDoc | (() => ComponentDoc)
+  getDoc: () => ComponentDoc | undefined
   onUpdate?: () => void
 }
 
 export function useSlotsManager(options: SlotsManagerOptions) {
-  const { doc, onUpdate } = options
-
-  const slotEdits = reactive<Record<string, string>>({})
+  const slotEdits = reactive<SlotEditMap>({})
   const editingSlot = ref<string | null>(null)
   const currentSlotEdit = ref('')
 
-  const currentDoc = computed(() =>  typeof doc === 'function' ? doc() : doc)
-
-  watch(currentDoc, () => {
-    initializeSlotEdits()
-    editingSlot.value = null
-    currentSlotEdit.value = ''
-  }, { immediate: true })
+  watch(
+    () => options.getDoc(),
+    () => {
+      initializeSlotEdits()
+      editingSlot.value = null
+      currentSlotEdit.value = ''
+    },
+    { immediate: true }
+  )
 
   function initializeSlotEdits() {
-    Object.keys(slotEdits).forEach(key => delete slotEdits[key])
-    
-    const doc = currentDoc.value
-    if (doc.slotExamples) {
-      Object.entries(doc.slotExamples).forEach(([name, content]) => {
-        slotEdits[name] = content
-      })
-    }
-    if (doc.slots) {
-      doc.slots.forEach(slot => {
-        if (!slotEdits[slot.name]) {
-          slotEdits[slot.name] = ''
-        }
-      })
-    }
+    replaceSlotEdits(createInitialSlotEdits(options.getDoc()))
   }
 
   function getSlotContent(): string | Record<string, string> {
-    const editedSlots = getEditedSlots()
-    if (Object.keys(editedSlots).length > 0) {
-      return editedSlots
-    }
-    const slotExamples = getSlotExamples()
-    if (Object.keys(slotExamples).length > 0) {
-      return slotExamples
-    }
-    return ''
-  }
-
-  function getEditedSlots(): Record<string, string> {
-    const editedSlots: Record<string, string> = {}
-    
-    Object.entries(slotEdits).forEach(([name, content]) => {
-      if (content && content.trim()) {
-        editedSlots[name] = content
-      }
-    })
-    
-    return editedSlots
-  }
-
-  function getSlotExamples(): Record<string, string> {
-    const slotExamples: Record<string, string> = {}
-    const doc = currentDoc.value
-    
-    if (doc.slotExamples) {
-      Object.entries(doc.slotExamples).forEach(([name, content]) => {
-        if (content && content.trim()) {
-          slotExamples[name] = content
-        }
-      })
-    }
-    
-    return slotExamples
+    return getResolvedSlotContent(slotEdits)
   }
 
   function startEditSlot(slotName: string) {
     editingSlot.value = slotName
-    const currentValue = slotEdits[slotName] || getDefaultSlotValue(slotName)
-    currentSlotEdit.value = currentValue
+    currentSlotEdit.value = slotEdits[slotName] ?? getDefaultSlotValue(slotName)
   }
 
   function getDefaultSlotValue(slotName: string): string {
-    const doc = currentDoc.value
-    if (doc.slotExamples && doc.slotExamples[slotName]) {
-      return doc.slotExamples[slotName]
-    }
-    return ''
+    return getDefaultSlotExample(options.getDoc(), slotName)
   }
 
   function applySlotEdit() {
-    if (editingSlot.value) {
-      slotEdits[editingSlot.value] = currentSlotEdit.value
-      editingSlot.value = null
-      currentSlotEdit.value = ''
-      onUpdate?.()
-    }
+    if (!editingSlot.value) return
+
+    slotEdits[editingSlot.value] = currentSlotEdit.value
+    editingSlot.value = null
+    currentSlotEdit.value = ''
+    options.onUpdate?.()
   }
 
   function cancelSlotEdit() {
@@ -107,22 +59,28 @@ export function useSlotsManager(options: SlotsManagerOptions) {
   }
 
   function resetSlotEdits() {
-    Object.keys(slotEdits).forEach(key => delete slotEdits[key])
     editingSlot.value = null
     currentSlotEdit.value = ''
     initializeSlotEdits()
+  }
+
+  function replaceSlotEdits(nextEdits: SlotEditMap) {
+    Object.keys(slotEdits).forEach(key => {
+      delete slotEdits[key]
+    })
+
+    Object.assign(slotEdits, nextEdits)
   }
 
   return {
     slotEdits,
     editingSlot,
     currentSlotEdit,
-
     initializeSlotEdits,
     getSlotContent,
     startEditSlot,
     applySlotEdit,
     cancelSlotEdit,
-    resetSlotEdits
+    resetSlotEdits,
   }
-} 
+}

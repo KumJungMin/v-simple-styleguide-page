@@ -22,24 +22,29 @@
     "url": "https://github.com/KumJungMin/v-simple-styleguide-page/issues"
   },
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.esm.js",
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
     },
     "./types": {
       "import": "./dist/types.esm.js",
-      "require": "./dist/types.js",
-      "types": "./dist/types.d.ts"
+      "require": "./dist/types.cjs.js",
+      "types": "./dist/type/component-docs.d.ts"
     },
     "./core": {
       "import": "./dist/core.esm.js",
-      "require": "./dist/core.js",
-      "types": "./dist/core.d.ts"
+      "require": "./dist/core.cjs.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./shared": {
+      "import": "./dist/shared.esm.js",
+      "require": "./dist/shared.cjs.js",
+      "types": "./dist/shared/index.d.ts"
     }
   },
   "files": [

@@ -33,7 +33,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-app.use(createStyleguide(app, {
+app.use(createStyleguide({
   docs: [
     // Component docs...
   ]
@@ -98,7 +98,7 @@ A clickable button component.
       description: 'Emitted on button click'
     }
   ],
-  namedSlots: {
+  slotExamples: {
     default: '<span>Default Button Text</span>',
     icon: '<svg>...</svg>'
   },
@@ -165,7 +165,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 // Styleguide configuration
-app.use(createStyleguide(app, {
+app.use(createStyleguide({
   docs: [
     // Component docs...
   ]
@@ -196,8 +196,7 @@ export interface ComponentDoc {
   props?: PropDefinition[]
   emits?: EmitDefinition[]
   slots?: SlotDefinition[]
-  namedSlots?: Record<string, string>
-  examples?: any[]
+  slotExamples?: Record<string, string>
 }
 
 export interface PropDefinition {
@@ -240,7 +239,7 @@ export interface SlotDefinition {
 
 ```ts
 {
-  namedSlots: {
+  slotExamples: {
     header: '<h3 style="color: #2563eb;">Custom Header</h3>',
     default: '<p>Default Content</p>',
     footer: '<button>Confirm</button>'
