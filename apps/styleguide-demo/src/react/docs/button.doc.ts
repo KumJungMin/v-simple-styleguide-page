@@ -1,9 +1,10 @@
-import Button from '../components/Button.vue'
+import { defineReactComponentDoc } from 'styleguide-exporter-react'
+import ReactButton from '../components/ReactButton'
 
-export default {
-  title: 'Button',
-  description: '사용자의 액션을 유도하는 기본 인터랙션 요소입니다. variant와 size 조합으로 계층과 밀도를 표현합니다.',
-  component: Button,
+export default defineReactComponentDoc({
+  title: 'Button React',
+  description: 'React runtime으로 렌더링되는 버튼 예시입니다. 같은 스펙 화면에서 Vue 컴포넌트와 함께 비교할 수 있도록 구성했습니다.',
+  component: ReactButton,
   props: [
     {
       name: 'variant',
@@ -38,20 +39,23 @@ export default {
       description: '부모 너비를 가득 채우는 레이아웃입니다.',
     },
   ],
-  emits: [
+  events: [
     {
-      name: 'click',
+      name: 'onClick',
       payload: 'void',
       description: '사용자가 버튼을 눌렀을 때 발생합니다.',
     },
   ],
-  slotExamples: {
-    default: 'Primary',
+  composition: {
+    kind: 'children',
+    entries: [
+      {
+        name: 'default',
+        description: '버튼 내부 레이블',
+      },
+    ],
   },
-  slots: [
-    {
-      name: 'default',
-      description: '버튼 내부 레이블',
-    },
-  ],
-}
+  compositionExamples: {
+    default: 'React CTA',
+  },
+})

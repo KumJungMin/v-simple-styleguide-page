@@ -1,6 +1,7 @@
 import Input from '../components/Input.vue'
+import { defineVueComponentDoc } from 'styleguide-exporter-vue'
 
-export default {
+export default defineVueComponentDoc({
   title: 'Input',
   description: '텍스트 입력, 검색, 필터 인터랙션에 사용하는 기본 필드입니다.',
   component: Input,
@@ -43,10 +44,11 @@ export default {
       description: '비활성화 상태',
     },
   ],
-  emits: [
+  events: [
     {
       name: 'update:modelValue',
       payload: 'string',
+      handlerPropName: 'onUpdate:modelValue',
       description: '입력값 변경 시 발생',
     },
     {
@@ -55,4 +57,4 @@ export default {
       description: '포커스 진입 시 발생',
     },
   ],
-}
+})

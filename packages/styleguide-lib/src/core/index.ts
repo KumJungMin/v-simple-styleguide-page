@@ -1,7 +1,14 @@
-import './styles/styleguide-container.css'
-
-export { default as WidgetComponentDoc } from './components/ComponentDoc.vue'
-export { default as StyleguideContainer } from './components/StyleguideContainer.vue'
-export { createStyleguide } from './plugin'
-export type { StyleguideOptions, StyleguideStyles } from './plugin'
-export { StyleguideDocsKey } from './symbols'
+export {
+  WidgetComponentDoc,
+  StyleguideContainer,
+  StyleguideDocsKey,
+  StyleguideRendererRegistryKey,
+} from 'styleguide-viewer-vue'
+export {
+  createStyleguideViewer as createStyleguide,
+} from 'styleguide-viewer-vue'
+export type {
+  StyleguideViewerOptions as StyleguideOptions,
+  StyleguideViewerStyles as StyleguideStyles,
+} from 'styleguide-viewer-vue'
+export { createVueRendererAdapter } from 'styleguide-runtime-vue'

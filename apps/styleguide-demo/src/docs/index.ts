@@ -1,6 +1,4 @@
-import badgeDoc from './badge.doc'
-import buttonDoc from './button.doc'
-import inputDoc from './input.doc'
-import modalDoc from './modal.doc'
+import { reactDocs } from '../react/docs'
+import { vueDocs } from '../vue/docs'
 
-export const componentDocs = [buttonDoc, inputDoc, badgeDoc, modalDoc]
+export const componentDocs = [...vueDocs, ...reactDocs]

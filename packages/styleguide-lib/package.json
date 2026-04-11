@@ -62,6 +62,10 @@
     "publish:major": "npm version major && npm publish"
   },
   "dependencies": {
+    "styleguide-core": "workspace:*",
+    "styleguide-runtime-vue": "workspace:*",
+    "styleguide-schema": "workspace:*",
+    "styleguide-viewer-vue": "workspace:*",
     "markdown-it": "^13.0.0",
     "highlight.js": "^11.9.0"
   },

@@ -1,6 +1,7 @@
 import Modal from '../components/Modal.vue'
+import { defineVueComponentDoc } from 'styleguide-exporter-vue'
 
-export default {
+export default defineVueComponentDoc({
   title: 'Modal',
   description: '오버레이 위에 주요 의사결정을 띄우는 대화형 모달입니다.',
   component: Modal,
@@ -20,14 +21,31 @@ export default {
       description: '모달 너비'
     }
   ],
-  emits: [
+  events: [
     {
       name: 'close',
       payload: 'void',
       description: '모달이 닫힐 때 발생'
     }
   ],
-  slotExamples: {
+  composition: {
+    kind: 'slots',
+    entries: [
+      {
+        name: 'header',
+        description: '모달 헤더 영역'
+      },
+      {
+        name: 'default',
+        description: '본문 콘텐츠 영역'
+      },
+      {
+        name: 'footer',
+        description: '하단 액션 버튼 영역'
+      }
+    ]
+  },
+  compositionExamples: {
     header: '<h3 style="color: #2563eb; margin: 0;">예약 확인</h3>',
     default: `
       <div style="text-align: center;">
@@ -47,18 +65,4 @@ export default {
       </button>
     `
   },
-  slots: [
-    { 
-      name: 'header', 
-      description: '모달 헤더 영역'
-    },
-    { 
-      name: 'default', 
-      description: '본문 콘텐츠 영역'
-    },
-    { 
-      name: 'footer', 
-      description: '하단 액션 버튼 영역'
-    }
-  ]
-}
+})

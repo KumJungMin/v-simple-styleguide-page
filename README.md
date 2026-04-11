@@ -1,302 +1,326 @@
-# Vue 3 Styleguide Library
+# Multi-Framework Styleguide Monorepo
 
-Vue 3 컴포넌트를 위한 인터랙티브 스타일가이드 모듈입니다. 컴포넌트의 Props, Emits, Slots를 실시간으로 편집하고 미리보기할 수 있는 플레이그라운드를 제공합니다. (<a href="https://style-guide-list-demo.netlify.app/">demo</a>)
+회사 서비스의 디자인 가이드를 한 곳에서 보여주기 위한 모노레포입니다.
 
-## 🚀 주요 기능
+이 저장소의 목표는 다음 두 가지를 동시에 만족하는 것입니다.
 
-- **실시간 컴포넌트 미리보기**: iframe을 통한 격리된 환경에서 컴포넌트 렌더링
-- **Props 편집**: 타입별 입력 컨트롤 (text, number, boolean, select)
-- **Emits 로깅**: 컴포넌트에서 발생하는 이벤트를 실시간으로 캡처
-- **Slots 편집**: Named slots와 default slot을 실시간으로 편집
-- **반응형 디바이스 미리보기**: 모바일, 태블릿, 데스크톱 뷰 지원
-- **마크다운 문서화**: 컴포넌트 설명을 마크다운으로 작성
+- 디자인 토큰, 사용 가이드, 컴포넌트 스펙을 한 화면에서 보여준다.
+- Vue 프로젝트와 React 프로젝트의 실제 재사용 컴포넌트를 같은 방식으로 문서화한다.
 
+지금 구조는 `가이드 UI`, `공통 스키마`, `iframe 렌더링 코어`, `프레임워크별 런타임`을 분리한 형태입니다.
 
-## 🎯 기본 사용법
+## 한눈에 보기
 
-### 1. 라이브러리 설정
+### 큰 구조
 
-```typescript
-// main.ts
-import { createApp } from 'vue'
-import { createStyleguide } from 'vue-styleguide-lib'
-import App from './App.vue'
+- `apps/styleguide-demo`
+  - 현재 구조를 보여주는 데모 앱입니다.
+  - Color token 화면과 Component spec 화면이 있습니다.
+  - Vue 컴포넌트와 React 컴포넌트 예시를 함께 보여줍니다.
+- `packages/styleguide-schema`
+  - 문서 타입과 manifest 타입을 정의합니다.
+- `packages/styleguide-core`
+  - 문서 정규화, iframe 부트스트랩, 이벤트 브리지, renderer registry 같은 공통 로직이 들어 있습니다.
+- `packages/styleguide-runtime-vue`
+  - Vue 컴포넌트를 iframe 안에 mount/unmount 합니다.
+- `packages/styleguide-runtime-react`
+  - React 컴포넌트를 iframe 안에 mount/unmount 합니다.
+- `packages/styleguide-viewer-vue`
+  - 실제 스타일가이드 화면 UI입니다.
+  - 좌측 컴포넌트 목록, props/events/composition 패널, preview iframe을 렌더링합니다.
+- `packages/styleguide-exporter-vue`
+  - Vue 문서를 정의하고 manifest 형태로 모으는 도우미입니다.
+- `packages/styleguide-exporter-react`
+  - React 문서를 정의하고 manifest 형태로 모으는 도우미입니다.
+- `packages/styleguide-cli`
+  - 여러 프로젝트 manifest를 합치는 최소 CLI 유틸입니다.
+- `packages/styleguide-lib`
+  - 기존 Vue 전용 패키지와의 호환을 위한 facade입니다.
+  - 내부적으로는 새 패키지들을 다시 export 합니다.
 
-const app = createApp(App)
+### 핵심 아이디어
 
-// 스타일가이드 설정
-app.use(createStyleguide({
-  docs: [
-    // 컴포넌트 문서들...
-  ]
-}))
+이 저장소는 `문서 데이터`와 `실제 렌더링`을 분리합니다.
 
-app.mount('#app')
+1. 각 프로젝트는 자기 프레임워크 방식으로 문서를 작성합니다.
+2. 문서는 `styleguide-schema` 타입으로 정규화됩니다.
+3. `styleguide-viewer-vue`가 공통 문서 UI를 렌더링합니다.
+4. 실제 컴포넌트 preview는 iframe 안에서 실행됩니다.
+5. iframe 안 마운트는 `runtime-vue` 또는 `runtime-react`가 담당합니다.
+
+즉, 화면 껍데기는 하나지만 실제 컴포넌트 렌더링은 프레임워크별 런타임으로 분리되어 있습니다.
+
+## 처음 보는 사람이 보면 좋은 순서
+
+처음 코드를 읽을 때는 아래 순서가 가장 이해하기 쉽습니다.
+
+1. `apps/styleguide-demo`
+2. `packages/styleguide-viewer-vue`
+3. `packages/styleguide-core`
+4. `packages/styleguide-runtime-vue`
+5. `packages/styleguide-runtime-react`
+6. `packages/styleguide-schema`
+
+### 1. 데모 앱부터 보기
+
+추천 시작 파일:
+
+- [apps/styleguide-demo/src/main.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/main.ts)
+- [apps/styleguide-demo/src/App.vue](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/App.vue)
+- [apps/styleguide-demo/src/docs/index.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/docs/index.ts)
+
+여기서 알 수 있는 것:
+
+- 뷰어 플러그인을 어떻게 설치하는지
+- Vue/React renderer를 어떻게 등록하는지
+- 문서 배열을 어떻게 전달하는지
+
+### 2. 뷰어 UI 보기
+
+추천 파일:
+
+- [packages/styleguide-viewer-vue/src/plugin.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/plugin.ts)
+- [packages/styleguide-viewer-vue/src/components/StyleguideContainer.vue](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/components/StyleguideContainer.vue)
+- [packages/styleguide-viewer-vue/src/components/ComponentDoc.vue](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/components/ComponentDoc.vue)
+
+여기서 알 수 있는 것:
+
+- 문서를 주입하고 normalize 하는 방식
+- 좌측 목록과 우측 문서 상세 UI가 어떻게 구성되는지
+- props, events, composition 편집이 preview와 어떻게 연결되는지
+
+### 3. 공통 코어 보기
+
+추천 파일:
+
+- [packages/styleguide-core/src/docs/normalizeComponentDoc.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-core/src/docs/normalizeComponentDoc.ts)
+- [packages/styleguide-core/src/preview/rendererAdapter.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-core/src/preview/rendererAdapter.ts)
+- [packages/styleguide-core/src/preview/rendererRegistry.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-core/src/preview/rendererRegistry.ts)
+- [packages/styleguide-core/src/events/eventBridge.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-core/src/events/eventBridge.ts)
+
+여기서 알 수 있는 것:
+
+- 레거시 Vue 문서 구조를 현재 공통 구조로 바꾸는 방식
+- renderer adapter 계약
+- 이벤트를 props handler로 바꾸는 방식
+
+### 4. 프레임워크 런타임 보기
+
+추천 파일:
+
+- [packages/styleguide-runtime-vue/src/vueRendererAdapter.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-runtime-vue/src/vueRendererAdapter.ts)
+- [packages/styleguide-runtime-react/src/reactRendererAdapter.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-runtime-react/src/reactRendererAdapter.ts)
+
+여기서 알 수 있는 것:
+
+- 같은 문서 모델을 가지고 Vue와 React가 어떻게 다르게 mount 되는지
+- Vue는 `slots`, React는 `children`을 어떻게 처리하는지
+
+### 5. 타입 구조 보기
+
+추천 파일:
+
+- [packages/styleguide-schema/src/docs/component-docs.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-schema/src/docs/component-docs.ts)
+- [packages/styleguide-schema/src/manifest/component-manifest.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-schema/src/manifest/component-manifest.ts)
+
+여기서 알 수 있는 것:
+
+- 공통 문서 타입
+- `framework`, `props`, `events`, `composition` 개념
+- 나중에 manifest 기반으로 확장할 때의 기준점
+
+## 현재 데모 구조
+
+`apps/styleguide-demo/src`는 지금 아래처럼 나뉘어 있습니다.
+
+```text
+src/
+  App.vue
+  main.ts
+  style.css
+  env.d.ts
+  data/
+    colorTokens.ts
+  docs/
+    index.ts
+  vue/
+    components/
+      Badge.vue
+      Button.vue
+      ColorTokensPage.vue
+      Input.vue
+      Modal.vue
+    docs/
+      badge.doc.ts
+      button.doc.ts
+      input.doc.ts
+      modal.doc.ts
+      index.ts
+  react/
+    components/
+      ReactButton.ts
+    docs/
+      button.doc.ts
+      index.ts
+    rendererBridge.ts
 ```
 
-### 2. 컴포넌트 문서 작성
+의도는 단순합니다.
 
-```typescript
-// docs/Button.doc.ts
-import Button from '../components/Button.vue'
+- `src/vue`
+  - Vue 예제 컴포넌트와 Vue 문서
+- `src/react`
+  - React 예제 컴포넌트, React 문서, React bridge
+- `src/docs/index.ts`
+  - 프레임워크별 문서를 한 배열로 합치는 entry
+- `src/data`
+  - 프레임워크와 무관한 공통 데모 데이터
 
-export default {
-  title: 'Button',
-  description: `
-# Button 컴포넌트
+## 실제 동작 흐름
 
-클릭 가능한 버튼 컴포넌트입니다.
+컴포넌트 하나를 화면에 띄우는 흐름은 아래와 같습니다.
 
-## 사용법
+1. 데모 앱이 `componentDocs`를 뷰어 플러그인에 전달합니다.
+2. `styleguide-viewer-vue`가 문서를 normalize 하고 renderer registry를 만듭니다.
+3. 사용자가 컴포넌트를 선택하면 `ComponentDoc.vue`가 현재 문서를 기준으로 preview를 요청합니다.
+4. `usePreviewFrame.ts`가 iframe 문서를 초기화합니다.
+5. 현재 문서의 `framework` 값으로 renderer를 찾습니다.
+6. Vue 문서면 `runtime-vue`, React 문서면 `runtime-react`가 mount 합니다.
+7. props 변경, composition 변경, event log 수집이 같은 UI 안에서 일어납니다.
 
-\`\`\`vue
-<Button variant="primary" size="large" @click="handleClick">
-  클릭하세요
-</Button>
-\`\`\`
-  `,
-  component: Button,
-  props: [
-    {
-      name: 'variant',
-      type: 'string',
-      required: false,
-      default: 'primary',
-      description: '버튼 스타일 변형',
-      control: 'select',
-      options: ['primary', 'secondary', 'danger']
-    },
-    {
-      name: 'size',
-      type: 'string',
-      required: false,
-      default: 'medium',
-      description: '버튼 크기',
-      control: 'select',
-      options: ['small', 'medium', 'large']
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      required: false,
-      default: false,
-      description: '비활성화 상태'
-    }
-  ],
-  emits: [
-    {
-      name: 'click',
-      payload: 'MouseEvent',
-      description: '버튼 클릭 시 발생하는 이벤트'
-    }
-  ],
-  // Named slots 예제
-  slotExamples: {
-    default: '<span>기본 버튼 텍스트</span>',
-    icon: '<svg>...</svg>'
-  },
-  slots: [
-    {
-      name: 'default',
-      description: '버튼 내용'
-    },
-    {
-      name: 'icon',
-      description: '버튼 아이콘'
-    }
-  ]
-}
+## 문서 모델
+
+현재 공통 문서 모델의 핵심은 아래 네 가지입니다.
+
+- `framework`
+  - `vue` 또는 `react`
+- `props`
+  - 편집 가능한 속성 정의
+- `events`
+  - 로그를 수집할 이벤트 정의
+- `composition`
+  - Vue의 slots 또는 React의 children 정의
+
+이 덕분에 UI는 공통으로 유지하고, 런타임만 프레임워크별로 분리할 수 있습니다.
+
+예를 들면:
+
+- Vue 문서
+  - `framework: 'vue'`
+  - `composition.kind: 'slots'`
+- React 문서
+  - `framework: 'react'`
+  - `composition.kind: 'children'`
+
+## 자주 보는 패키지별 역할
+
+### `styleguide-schema`
+
+이 패키지는 “우리가 어떤 문서 구조를 공통으로 쓸 것인가”를 정의합니다.
+
+- 문서 타입
+- prop/event/composition 타입
+- manifest 타입
+
+### `styleguide-core`
+
+이 패키지는 프레임워크 비의존 로직만 담습니다.
+
+- 문서 정규화
+- iframe preview 부트스트랩
+- renderer registry
+- event handler 변환
+- composition 상태 계산
+
+### `styleguide-runtime-vue`
+
+이 패키지는 Vue 컴포넌트를 실제로 렌더링하는 어댑터입니다.
+
+- `createApp`
+- slot 주입
+- event handler 연결
+
+### `styleguide-runtime-react`
+
+이 패키지는 React 컴포넌트를 실제로 렌더링하는 어댑터입니다.
+
+- React bridge 주입
+- `children` 전달
+- event handler 연결
+
+### `styleguide-viewer-vue`
+
+이 패키지는 사람이 보는 문서 UI입니다.
+
+- 컴포넌트 목록
+- 문서 헤더
+- props/events/composition 패널
+- iframe preview
+
+## 실행 방법
+
+### 설치
+
+```bash
+pnpm install
 ```
 
-### 3. 스타일가이드 페이지에서 사용
+### 데모 실행
 
-#### 방법 1: StyleguideContainer 사용
-
-```vue
-<!-- StyleguidePage.vue -->
-<template>
-  <div class="styleguide-page">
-    <StyleguideContainer :docs="docs" />
-  </div>
-</template>
-
-<script setup lang="ts">
-import { StyleguideContainer } from 'vue-styleguide-lib'
-import buttonDoc from './docs/Button.doc.ts'
-import modalDoc from './docs/Modal.doc.ts'
-
-const docs = [buttonDoc, modalDoc]
-</script>
+```bash
+pnpm --dir apps/styleguide-demo dev
 ```
 
-#### 방법 2: 개별 ComponentDoc 사용
+### 데모 빌드
 
-```vue
-<template>
-  <div class="styleguide-page">
-    <WidgetComponentDoc 
-      :doc="buttonDoc"
-      :component="Button"
-    />
-  </div>
-</template>
-
-<script setup lang="ts">
-import { WidgetComponentDoc } from 'vue-styleguide-lib'
-import buttonDoc from './docs/Button.doc.ts'
-import Button from './components/Button.vue'
-</script>
+```bash
+pnpm --dir apps/styleguide-demo build
 ```
 
-#### 방법 3: Plugin을 통한 전역 설정
+### 전체 타입체크/빌드
 
-```typescript
-// main.ts
-import { createApp } from 'vue'
-import { createStyleguide } from 'vue-styleguide-lib'
-import App from './App.vue'
-
-const app = createApp(App)
-
-// 스타일가이드 설정
-app.use(createStyleguide({
-  docs: [
-    // 컴포넌트 문서들...
-  ]
-}))
-
-app.mount('#app')
+```bash
+pnpm type-check
+pnpm build
 ```
 
-```vue
-<!-- App.vue -->
-<template>
-  <div id="app">
-    <StyleguideContainer />
-  </div>
-</template>
+## 새 예시를 추가하는 방법
 
-<script setup lang="ts">
-</script>
-```
+### Vue 컴포넌트 예시 추가
 
-### 타입 정의
+1. `apps/styleguide-demo/src/vue/components`에 컴포넌트를 추가합니다.
+2. `apps/styleguide-demo/src/vue/docs`에 문서를 작성합니다.
+3. `apps/styleguide-demo/src/vue/docs/index.ts`에 export를 추가합니다.
 
-```typescript
-// type/component-docs.ts
-export interface ComponentDoc {
-  title: string
-  description?: string
-  component: any
-  props?: PropDefinition[]
-  emits?: EmitDefinition[]
-  slots?: SlotDefinition[]
-  slotExamples?: Record<string, string>
-}
+### React 컴포넌트 예시 추가
 
-export interface PropDefinition {
-  name: string
-  type: string
-  required?: boolean
-  default?: any
-  description?: string
-  control?: 'string' | 'number' | 'boolean' | 'select'
-  options?: string[]
-}
+1. `apps/styleguide-demo/src/react/components`에 컴포넌트를 추가합니다.
+2. `apps/styleguide-demo/src/react/docs`에 문서를 작성합니다.
+3. 필요하면 `rendererBridge.ts`에서 React 렌더링 방식을 조정합니다.
+4. `apps/styleguide-demo/src/react/docs/index.ts`에 export를 추가합니다.
 
-export interface EmitDefinition {
-  name: string
-  payload: string
-  description?: string
-}
+### 문서 통합 지점
 
-export interface SlotDefinition {
-  name: string
-  description?: string
-}
-```
+Vue/React 문서는 최종적으로 [apps/styleguide-demo/src/docs/index.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/docs/index.ts)에서 하나의 배열로 합쳐집니다.
 
-## 🔧 고급 사용법
+## 호환 패키지
 
-### 커스텀 Props 컨트롤
+기존 `vue-styleguide-lib` 사용 코드를 한 번에 없애지 않기 위해 [packages/styleguide-lib](/Users/gjm/v-simple-styleguide-page/packages/styleguide-lib)는 유지하고 있습니다.
 
-```typescript
-{
-  name: 'color',
-  type: 'string',
-  control: 'select',
-  options: ['red', 'blue', 'green'],
-  description: '색상 선택'
-}
-```
+현재 이 패키지는:
 
-### Named Slots 예제
+- 독자적인 핵심 구현체라기보다
+- `styleguide-schema`, `styleguide-core`, `styleguide-runtime-vue`, `styleguide-viewer-vue`를 다시 export 하는 호환 계층
 
-```typescript
-{
-  slotExamples: {
-    header: '<h3 style="color: #2563eb;">커스텀 헤더</h3>',
-    default: '<p>기본 내용</p>',
-    footer: '<button>확인</button>'
-  }
-}
-```
+으로 보는 편이 맞습니다.
 
-### 이벤트 로깅
+## 참고 메모
 
-컴포넌트에서 발생하는 이벤트는 자동으로 캡처되어 Emits 탭에 표시됩니다:
+- 현재 데모는 Vue UI 셸 위에서 Vue/React preview를 함께 보여줍니다.
+- preview 자체는 iframe 안에서 분리 실행됩니다.
+- `apps/styleguide-demo type-check`는 코드 문제와 별개로 `vue-tsc`와 Node 22 조합 이슈가 있을 수 있습니다.
 
-```vue
-<!-- 컴포넌트 내부 -->
-<button @click="$emit('click', { id: 1, value: 'test' })">
-  클릭
-</button>
-```
+---
 
-### 반응형 미리보기
-
-```typescript
-const deviceBreakpoints = {
-  mobile: 375,
-  tablet: 768,
-  desktop: 1200
-}
-```
-
-## 🎨 스타일링
-
-라이브러리는 기본 스타일을 제공하지만, 필요에 따라 커스터마이징할 수 있습니다:
-
-```css
-/* 커스텀 스타일 */
-.component-doc {
-  --primary-color: #2563eb;
-  --border-color: #e5e7eb;
-  --background-color: #f9fafb;
-}
-
-.props-table th {
-  background-color: var(--background-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.slot-editor {
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-}
-```
-
-## 🔍 디버깅
-
-### 이벤트 로그 확인
-
-Emits 탭에서 실시간으로 이벤트를 확인할 수 있습니다:
-
-```
-[12:34:56] click: { id: 1, value: "test" }
-[12:34:57] submit: { formData: {...} }
-```
-
-### Props 변경 추적
-
-Props 변경 시 자동으로 iframe이 업데이트되어 실시간으로 결과를 확인할 수 있습니다.
+짧게 요약하면, 이 저장소는 `하나의 스타일가이드 UI + 여러 프레임워크 런타임` 구조입니다.  
+처음 볼 때는 데모 앱에서 시작해서 `viewer -> core -> runtime -> schema` 순서로 따라가면 가장 빠르게 이해할 수 있습니다.

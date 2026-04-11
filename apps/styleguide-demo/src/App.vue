@@ -32,8 +32,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { StyleguideContainer } from '../../../packages/styleguide-lib/src'
-import ColorTokensPage from './components/ColorTokensPage.vue'
+import { StyleguideContainer } from 'styleguide-viewer-vue'
+import ColorTokensPage from './vue/components/ColorTokensPage.vue'
 import { componentDocs } from './docs'
 
 const activeView = ref<'tokens' | 'components'>('tokens')
@@ -50,7 +50,7 @@ const activeViewMeta = computed(() => {
   return {
     breadcrumb: 'Design System / Components',
     title: 'Component spec',
-    summary: '컴포넌트별 스펙, Props, 이벤트, 프리뷰 사이즈를 한 화면에서 확인합니다.',
+    summary: 'Vue와 React 컴포넌트를 같은 스펙 뷰어에서 비교하고, Props, 이벤트, 프리뷰 사이즈를 함께 확인합니다.',
   }
 })
 </script>
