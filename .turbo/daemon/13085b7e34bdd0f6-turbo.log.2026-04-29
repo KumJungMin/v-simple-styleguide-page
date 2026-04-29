@@ -1,0 +1,94 @@
+2026-04-29T10:21:09.771819Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo/cookies/.turbo-cookie"), AnchoredSystemPathBuf(".turbo/cookies/1.cookie")}
+2026-04-29T10:21:09.771833Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:21:10.371028Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458070348-cee714d65dd53.mjs")}
+2026-04-29T10:21:10.371042Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:21:10.471447Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-lib/vite.config.ts.timestamp-1777458070439-957b6fc2add7f.mjs"), AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458070348-cee714d65dd53.mjs")}
+2026-04-29T10:21:10.471457Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("vue-styleguide-lib"), path: AnchoredSystemPathBuf("packages/styleguide-lib") }, WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:21:10.571757Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-lib/vite.config.ts.timestamp-1777458070439-957b6fc2add7f.mjs")}
+2026-04-29T10:21:10.571764Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("vue-styleguide-lib"), path: AnchoredSystemPathBuf("packages/styleguide-lib") }}))
+2026-04-29T10:24:38.572990Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/styles"), AnchoredSystemPathBuf("packages/styleguide-viewer-react"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/hooks")}
+2026-04-29T10:24:38.573004Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:24:49.373100Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/tsconfig.json"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/env.d.ts"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/utils.ts"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/package.json")}
+2026-04-29T10:24:49.373109Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:24:52.372546Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/styles/styleguide-viewer.css")}
+2026-04-29T10:24:52.372555Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:25:04.973807Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/hooks/usePreviewFrame.ts"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/hooks/useMarkdown.ts")}
+2026-04-29T10:25:04.973815Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:25:40.673571Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/CompositionTab.tsx"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/EventsTab.tsx"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/PropsTab.tsx"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/DeviceControls.tsx")}
+2026-04-29T10:25:40.673581Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:26:40.574397Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/WidgetComponentDoc.tsx"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/reactRenderer.tsx"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/index.ts"), AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/components/StyleguideContainer.tsx")}
+2026-04-29T10:26:40.574405Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:27:04.673623Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/main.ts"), AnchoredSystemPathBuf("apps/styleguide-demo/src/App.tsx"), AnchoredSystemPathBuf("apps/styleguide-demo/src/App.vue"), AnchoredSystemPathBuf("apps/styleguide-demo/src/react/components/ColorTokensPage.tsx")}
+2026-04-29T10:27:04.673631Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:04.774342Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/main.tsx")}
+2026-04-29T10:27:04.774351Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:04.774368Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-04-29T10:27:34.373626Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/style.css")}
+2026-04-29T10:27:34.373634Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:51.374529Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/package.json"), AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts")}
+2026-04-29T10:27:51.374541Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:51.474966Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/index.html"), AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458471421-d3633bc5f2845.mjs")}
+2026-04-29T10:27:51.474976Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:51.573602Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/react/rendererBridge.ts"), AnchoredSystemPathBuf("apps/styleguide-demo/src/docs/index.ts"), AnchoredSystemPathBuf("apps/styleguide-demo/tsconfig.json"), AnchoredSystemPathBuf("apps/styleguide-demo/src/env.d.ts")}
+2026-04-29T10:27:51.573610Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:51.677326Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/react/components/ReactButton.ts")}
+2026-04-29T10:27:51.677336Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:27:59.275044Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-viewer-react/src/styles/styleguide-viewer.css")}
+2026-04-29T10:27:59.275053Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:29:17.475637Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("README.md")}
+2026-04-29T10:29:17.475645Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:29:25.575790Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("README.md")}
+2026-04-29T10:29:25.575799Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:29:33.775022Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("README.md")}
+2026-04-29T10:29:33.775030Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:29:49.876237Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/package-lock.json")}
+2026-04-29T10:29:49.876244Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:30:04.374871Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_88848_0022d0350e7c80e78ae071efce78f882"), AnchoredSystemPathBuf("_tmp_88848_f2f9f74f4b036bdef92980f4a9fb1ed3")}
+2026-04-29T10:30:04.374881Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:30:14.276076Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_92954_48c631974e0672a89c03e294c4d8c93f"), AnchoredSystemPathBuf("_tmp_92954_cf200fa42ad896ab0e2cd1fe11c14ff9")}
+2026-04-29T10:30:14.276085Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:30:14.475717Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:30:14.475725Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:30:14.576262Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:30:14.576272Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:30:14.677601Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:30:14.677611Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:30:14.777777Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:30:14.777788Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:30:19.175324Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_94285_0360f24151a9a204377c54c8f2ccdb63"), AnchoredSystemPathBuf("_tmp_94285_1f3ccab6ae9701e758917b6c64103339")}
+2026-04-29T10:30:19.175353Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:32:19.177668Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_17406_a99c0718254194949c66c5f86c786071")}
+2026-04-29T10:32:19.177677Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:32:20.578750Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:20.578757Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:20.678366Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:20.678375Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:20.777421Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:20.777429Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:20.878173Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:20.878180Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:20.976216Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:20.976223Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:21.077633Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2026-04-29T10:32:21.077643Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2026-04-29T10:32:21.377349Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-lock.yaml.3394064022"), AnchoredSystemPathBuf("pnpm-lock.yaml")}
+2026-04-29T10:32:21.377357Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:32:40.677939Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/src/react/components/ReactButton.ts")}
+2026-04-29T10:32:40.677948Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:32:48.277824Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458768211-b591bd8e4cd9f.mjs")}
+2026-04-29T10:32:48.277832Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:32:48.277851Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-04-29T10:33:00.977121Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458780964-37e07c272ac35.mjs")}
+2026-04-29T10:33:00.977129Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:33:00.997834Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-04-29T10:33:40.376768Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458820275-a5558648d038d.mjs")}
+2026-04-29T10:33:40.376776Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:33:40.376796Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-04-29T10:34:41.978074Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo/cookies/2.cookie")}
+2026-04-29T10:34:41.978084Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-04-29T10:34:42.578697Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/styleguide-demo/vite.config.ts.timestamp-1777458882472-c76fab5187293.mjs")}
+2026-04-29T10:34:42.578706Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("styleguide-demo"), path: AnchoredSystemPathBuf("apps/styleguide-demo") }}))
+2026-04-29T10:34:42.578722Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-04-29T10:34:42.677425Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/styleguide-lib/vite.config.ts.timestamp-1777458882579-4913e74f3ae4e.mjs")}
+2026-04-29T10:34:42.677433Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("vue-styleguide-lib"), path: AnchoredSystemPathBuf("packages/styleguide-lib") }}))
+2026-04-29T10:34:42.686322Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun

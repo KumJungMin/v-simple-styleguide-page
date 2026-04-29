@@ -12,10 +12,7 @@ body,
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top, rgba(51, 86, 126, 0.18), transparent 24%),
-    radial-gradient(circle at right top, rgba(239, 159, 39, 0.08), transparent 16%),
-    #050505;
+  background: #050505;
   color: #f8f4ea;
 }
 
@@ -28,4 +25,227 @@ select {
 
 * {
   box-sizing: border-box;
+}
+
+.demo-shell {
+  width: min(1280px, calc(100vw - 48px));
+  margin: 0 auto;
+  padding: 40px 0 72px;
+}
+
+.demo-header {
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(248, 244, 234, 0.72);
+}
+
+.demo-breadcrumb {
+  margin: 0;
+  color: #b6b0a4;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.demo-header h1 {
+  margin: 1.1rem 0 0;
+  color: #f8f4ea;
+  font-size: 3rem;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.demo-summary {
+  max-width: 52rem;
+  margin: 1rem 0 0;
+  color: #bbb4a6;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.demo-view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.demo-view-tab {
+  border: 1px solid rgba(248, 244, 234, 0.22);
+  border-radius: 999px;
+  background: rgba(248, 244, 234, 0.04);
+  color: #d2cbbb;
+  cursor: pointer;
+  padding: 0.78rem 1.15rem;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.demo-view-tab:hover,
+.demo-view-tab--active {
+  border-color: rgba(248, 244, 234, 0.74);
+  background: #131310;
+  color: #f8f4ea;
+  transform: translateY(-1px);
+}
+
+.demo-main {
+  padding-top: 2.5rem;
+}
+
+.demo-components-section {
+  min-height: 720px;
+}
+
+.tokens-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tokens-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.tokens-tab {
+  border: 1px solid rgba(248, 244, 234, 0.55);
+  border-radius: 18px;
+  background: transparent;
+  color: #f4efe3;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 0.95rem 1.4rem;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.tokens-tab:hover,
+.tokens-tab--active {
+  background: #141412;
+  border-color: #f8f4ea;
+  transform: translateY(-1px);
+}
+
+.tokens-domain {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tokens-domain-header h2 {
+  margin: 0;
+  color: #f8f4ea;
+  font-size: 2.5rem;
+  letter-spacing: 0;
+}
+
+.tokens-domain-header p {
+  margin: 0.75rem 0 0;
+  max-width: 48rem;
+  color: #b4aea1;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.token-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.token-section h3 {
+  margin: 0;
+  color: #b8b0a0;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.token-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.token-card {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+  border: 1px solid rgba(248, 244, 234, 0.18);
+  border-radius: 22px;
+  background: #2f2e2a;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 8.25rem 1.35rem 1.35rem;
+  text-align: left;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.token-card:hover {
+  border-color: rgba(248, 244, 234, 0.45);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  transform: translateY(-2px);
+}
+
+.token-swatch {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7rem;
+}
+
+.token-copy-state {
+  position: absolute;
+  right: 1.2rem;
+  top: 1rem;
+  color: rgba(248, 244, 234, 0.78);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.token-name {
+  color: #f4efe3;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.token-value {
+  color: #f0e7d4;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.token-description {
+  color: #aaa391;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 720px) {
+  .demo-shell {
+    width: min(100vw - 32px, 1280px);
+    padding-top: 28px;
+  }
+
+  .demo-header h1 {
+    font-size: 2.35rem;
+  }
+
+  .demo-summary {
+    font-size: 1rem;
+  }
+
+  .tokens-domain-header h2 {
+    font-size: 2rem;
+  }
+
+  .token-card {
+    padding-top: 7.4rem;
+  }
 }

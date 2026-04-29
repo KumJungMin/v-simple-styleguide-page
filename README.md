@@ -14,9 +14,9 @@
 ### 큰 구조
 
 - `apps/styleguide-demo`
-  - 현재 구조를 보여주는 데모 앱입니다.
+  - React 기반으로 구동되는 데모 앱입니다.
   - Color token 화면과 Component spec 화면이 있습니다.
-  - Vue 컴포넌트와 React 컴포넌트 예시를 함께 보여줍니다.
+  - 현재 데모 화면은 React 컴포넌트 예시를 보여줍니다.
 - `packages/styleguide-schema`
   - 문서 타입과 manifest 타입을 정의합니다.
 - `packages/styleguide-core`
@@ -28,6 +28,9 @@
 - `packages/styleguide-viewer-vue`
   - 실제 스타일가이드 화면 UI입니다.
   - 좌측 컴포넌트 목록, props/events/composition 패널, preview iframe을 렌더링합니다.
+- `packages/styleguide-viewer-react`
+  - React에서 실행되는 스타일가이드 화면 UI입니다.
+  - 데모 앱의 기본 뷰어입니다.
 - `packages/styleguide-exporter-vue`
   - Vue 문서를 정의하고 manifest 형태로 모으는 도우미입니다.
 - `packages/styleguide-exporter-react`
@@ -44,7 +47,7 @@
 
 1. 각 프로젝트는 자기 프레임워크 방식으로 문서를 작성합니다.
 2. 문서는 `styleguide-schema` 타입으로 정규화됩니다.
-3. `styleguide-viewer-vue`가 공통 문서 UI를 렌더링합니다.
+3. `styleguide-viewer-react` 또는 `styleguide-viewer-vue`가 공통 문서 UI를 렌더링합니다.
 4. 실제 컴포넌트 preview는 iframe 안에서 실행됩니다.
 5. iframe 안 마운트는 `runtime-vue` 또는 `runtime-react`가 담당합니다.
 
@@ -55,7 +58,7 @@
 처음 코드를 읽을 때는 아래 순서가 가장 이해하기 쉽습니다.
 
 1. `apps/styleguide-demo`
-2. `packages/styleguide-viewer-vue`
+2. `packages/styleguide-viewer-react`
 3. `packages/styleguide-core`
 4. `packages/styleguide-runtime-vue`
 5. `packages/styleguide-runtime-react`
@@ -65,14 +68,13 @@
 
 추천 시작 파일:
 
-- [apps/styleguide-demo/src/main.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/main.ts)
-- [apps/styleguide-demo/src/App.vue](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/App.vue)
+- [apps/styleguide-demo/src/main.tsx](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/main.tsx)
+- [apps/styleguide-demo/src/App.tsx](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/App.tsx)
 - [apps/styleguide-demo/src/docs/index.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/docs/index.ts)
 
 여기서 알 수 있는 것:
 
-- 뷰어 플러그인을 어떻게 설치하는지
-- Vue/React renderer를 어떻게 등록하는지
+- React 앱에서 뷰어를 어떻게 렌더링하는지
 - 문서 배열을 어떻게 전달하는지
 
 ### 2. 뷰어 UI 보기
@@ -82,6 +84,8 @@
 - [packages/styleguide-viewer-vue/src/plugin.ts](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/plugin.ts)
 - [packages/styleguide-viewer-vue/src/components/StyleguideContainer.vue](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/components/StyleguideContainer.vue)
 - [packages/styleguide-viewer-vue/src/components/ComponentDoc.vue](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-vue/src/components/ComponentDoc.vue)
+- [packages/styleguide-viewer-react/src/components/StyleguideContainer.tsx](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-react/src/components/StyleguideContainer.tsx)
+- [packages/styleguide-viewer-react/src/components/WidgetComponentDoc.tsx](/Users/gjm/v-simple-styleguide-page/packages/styleguide-viewer-react/src/components/WidgetComponentDoc.tsx)
 
 여기서 알 수 있는 것:
 
@@ -135,14 +139,21 @@
 
 ```text
 src/
-  App.vue
-  main.ts
+  App.tsx
+  main.tsx
   style.css
   env.d.ts
   data/
     colorTokens.ts
   docs/
     index.ts
+  react/
+    components/
+      ColorTokensPage.tsx
+      ReactButton.ts
+    docs/
+      button.doc.ts
+      index.ts
   vue/
     components/
       Badge.vue
@@ -156,23 +167,17 @@ src/
       input.doc.ts
       modal.doc.ts
       index.ts
-  react/
-    components/
-      ReactButton.ts
-    docs/
-      button.doc.ts
-      index.ts
-    rendererBridge.ts
 ```
 
 의도는 단순합니다.
 
 - `src/vue`
   - Vue 예제 컴포넌트와 Vue 문서
+  - 현재 React 데모 앱에서는 로드하지 않습니다.
 - `src/react`
-  - React 예제 컴포넌트, React 문서, React bridge
+  - React 예제 컴포넌트와 React 문서
 - `src/docs/index.ts`
-  - 프레임워크별 문서를 한 배열로 합치는 entry
+  - React 데모에서 로드할 문서를 모으는 entry
 - `src/data`
   - 프레임워크와 무관한 공통 데모 데이터
 
@@ -180,9 +185,9 @@ src/
 
 컴포넌트 하나를 화면에 띄우는 흐름은 아래와 같습니다.
 
-1. 데모 앱이 `componentDocs`를 뷰어 플러그인에 전달합니다.
-2. `styleguide-viewer-vue`가 문서를 normalize 하고 renderer registry를 만듭니다.
-3. 사용자가 컴포넌트를 선택하면 `ComponentDoc.vue`가 현재 문서를 기준으로 preview를 요청합니다.
+1. 데모 앱이 `componentDocs`를 React 뷰어 컴포넌트에 전달합니다.
+2. `styleguide-viewer-react`가 문서를 normalize 하고 renderer registry를 만듭니다.
+3. 사용자가 컴포넌트를 선택하면 `WidgetComponentDoc.tsx`가 현재 문서를 기준으로 preview를 요청합니다.
 4. `usePreviewFrame.ts`가 iframe 문서를 초기화합니다.
 5. 현재 문서의 `framework` 값으로 renderer를 찾습니다.
 6. Vue 문서면 `runtime-vue`, React 문서면 `runtime-react`가 mount 합니다.
@@ -257,6 +262,16 @@ src/
 - props/events/composition 패널
 - iframe preview
 
+### `styleguide-viewer-react`
+
+이 패키지는 React 앱에서 사람이 보는 문서 UI를 렌더링합니다.
+
+- 컴포넌트 목록
+- 문서 헤더
+- props/events/composition 패널
+- iframe preview
+- React preview renderer 기본 등록
+
 ## 실행 방법
 
 ### 설치
@@ -286,22 +301,15 @@ pnpm build
 
 ## 새 예시를 추가하는 방법
 
-### Vue 컴포넌트 예시 추가
-
-1. `apps/styleguide-demo/src/vue/components`에 컴포넌트를 추가합니다.
-2. `apps/styleguide-demo/src/vue/docs`에 문서를 작성합니다.
-3. `apps/styleguide-demo/src/vue/docs/index.ts`에 export를 추가합니다.
-
 ### React 컴포넌트 예시 추가
 
 1. `apps/styleguide-demo/src/react/components`에 컴포넌트를 추가합니다.
 2. `apps/styleguide-demo/src/react/docs`에 문서를 작성합니다.
-3. 필요하면 `rendererBridge.ts`에서 React 렌더링 방식을 조정합니다.
-4. `apps/styleguide-demo/src/react/docs/index.ts`에 export를 추가합니다.
+3. `apps/styleguide-demo/src/react/docs/index.ts`에 export를 추가합니다.
 
 ### 문서 통합 지점
 
-Vue/React 문서는 최종적으로 [apps/styleguide-demo/src/docs/index.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/docs/index.ts)에서 하나의 배열로 합쳐집니다.
+React 데모 문서는 최종적으로 [apps/styleguide-demo/src/docs/index.ts](/Users/gjm/v-simple-styleguide-page/apps/styleguide-demo/src/docs/index.ts)에서 모읍니다.
 
 ## 호환 패키지
 
@@ -316,9 +324,9 @@ Vue/React 문서는 최종적으로 [apps/styleguide-demo/src/docs/index.ts](/Us
 
 ## 참고 메모
 
-- 현재 데모는 Vue UI 셸 위에서 Vue/React preview를 함께 보여줍니다.
+- 현재 데모는 React UI 셸 위에서 React preview를 보여줍니다.
 - preview 자체는 iframe 안에서 분리 실행됩니다.
-- `apps/styleguide-demo type-check`는 코드 문제와 별개로 `vue-tsc`와 Node 22 조합 이슈가 있을 수 있습니다.
+- `apps/styleguide-demo type-check`는 `tsc --noEmit`으로 실행됩니다.
 
 ---
 

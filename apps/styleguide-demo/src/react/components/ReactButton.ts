@@ -1,4 +1,5 @@
 import { createElement } from 'react'
+import type { ReactNode } from 'react'
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -8,7 +9,7 @@ export interface ReactButtonProps {
   size?: ButtonSize
   disabled?: boolean
   block?: boolean
-  children?: unknown
+  children?: ReactNode
   onClick?: () => void
 }
 
@@ -23,7 +24,7 @@ const baseStyle = {
   color: '#f6f0e6',
   cursor: 'pointer',
   fontWeight: 700,
-  letterSpacing: '-0.02em',
+  letterSpacing: '0',
   transition: 'transform 160ms ease, border-color 160ms ease, background-color 160ms ease, color 160ms ease',
 } as const
 
@@ -68,7 +69,7 @@ const variantStyles: Record<ButtonVariant, Record<string, string>> = {
   },
 }
 
-function createChildContent(children: unknown) {
+function createChildContent(children: ReactNode): ReactNode {
   if (typeof children === 'string') {
     return createElement('span', {
       dangerouslySetInnerHTML: {
