@@ -3,7 +3,7 @@ import ReactButton from '../components/ReactButton'
 
 export default defineReactComponentDoc({
   title: 'Button React',
-  description: 'React runtime으로 렌더링되는 버튼 예시입니다. 같은 스펙 화면에서 Vue 컴포넌트와 함께 비교할 수 있도록 구성했습니다.',
+  description: 'React runtime으로 렌더링되는 버튼 예시입니다. Props, 이벤트, children 편집을 같은 스펙 화면에서 확인할 수 있습니다.',
   component: ReactButton,
   props: [
     {

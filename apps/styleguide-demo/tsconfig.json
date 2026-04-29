@@ -15,6 +15,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/vue"]
+  "include": ["src/env.d.ts", "src/**/*.ts", "src/**/*.tsx"]
 }

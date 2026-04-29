@@ -1,1 +1,0 @@
-export { createVueRendererAdapter } from './vueRendererAdapter'

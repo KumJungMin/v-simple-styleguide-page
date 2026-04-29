@@ -8,14 +8,11 @@
     "pnpm": ">=9.0.0 <10"
   },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "type-check": "turbo run type-check",
-    "clean": "turbo run clean && rm -rf node_modules"
-  },
-  "devDependencies": {
-    "turbo": "^1.10.0"
+    "build": "pnpm -r --if-present run build",
+    "dev": "pnpm --dir apps/styleguide-demo dev",
+    "lint": "pnpm -r --if-present run lint",
+    "type-check": "pnpm -r --if-present run type-check",
+    "clean": "pnpm -r --if-present run clean && rm -rf node_modules"
   },
   "packageManager": "pnpm@9.0.0"
 }
