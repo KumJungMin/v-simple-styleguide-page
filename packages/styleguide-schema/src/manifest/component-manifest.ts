@@ -1,14 +1,12 @@
 import type {
   CompositionDefinition,
   EventDefinition,
-  FrameworkKind,
   PropDefinition,
 } from '../docs/component-docs'
 
 export interface ComponentManifestEntry {
   projectId: string
   componentId: string
-  framework: FrameworkKind
   title: string
   description?: string
   props: PropDefinition[]

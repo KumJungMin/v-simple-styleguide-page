@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { colorTokenDomains, type ColorTokenItem } from '../../data/colorTokens'
+import { colorTokenDomains, type ColorTokenItem } from '../data/colorTokens'
 
 export default function ColorTokensPage() {
   const [activeDomainId, setActiveDomainId] = useState(colorTokenDomains[0]?.id ?? '')

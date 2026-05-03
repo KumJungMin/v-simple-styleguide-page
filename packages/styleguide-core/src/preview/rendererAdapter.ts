@@ -16,7 +16,5 @@ export interface StyleguideRendererInstance {
 }
 
 export interface StyleguideRendererAdapter {
-  framework: NormalizedComponentDoc['framework']
-  canRender: (doc: NormalizedComponentDoc) => boolean
   mount: (request: StyleguideRenderRequest) => StyleguideRendererInstance
 }

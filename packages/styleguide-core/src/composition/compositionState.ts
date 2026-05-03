@@ -1,7 +1,7 @@
-import type { CompositionKind, NormalizedComponentDoc } from 'styleguide-schema'
+import type { NormalizedComponentDoc } from 'styleguide-schema'
 
 export type CompositionEditMap = Record<string, string>
-export type ResolvedCompositionContent = string | Record<string, string>
+export type ResolvedCompositionContent = string
 
 export function createInitialCompositionEdits(componentDoc?: NormalizedComponentDoc): CompositionEditMap {
   const initialCompositionEdits: CompositionEditMap = {}
@@ -33,18 +33,9 @@ export function getUsedCompositionEdits(compositionEdits: CompositionEditMap): C
 }
 
 export function getResolvedCompositionContent(
-  compositionKind: CompositionKind | undefined,
   compositionEdits: CompositionEditMap
 ): ResolvedCompositionContent {
   const usedCompositionEdits = getUsedCompositionEdits(compositionEdits)
 
-  if (compositionKind === 'children') {
-    return usedCompositionEdits.default ?? ''
-  }
-
-  if (Object.keys(usedCompositionEdits).length > 0) {
-    return usedCompositionEdits
-  }
-
-  return ''
+  return usedCompositionEdits.default ?? ''
 }

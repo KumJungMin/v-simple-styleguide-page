@@ -1,25 +1,22 @@
 import type { ComponentDoc, ComponentDocsSource, ProjectManifest } from 'styleguide-schema'
 import { normalizeDocs } from 'styleguide-core'
 
-export function defineReactComponentDoc<TComponent = unknown>(
-  componentDoc: Omit<ComponentDoc<TComponent>, 'framework'>
+export function defineComponentDoc<TComponent = unknown>(
+  componentDoc: ComponentDoc<TComponent>
 ): ComponentDoc<TComponent> {
-  return {
-    framework: 'react',
-    ...componentDoc,
-  }
+  return componentDoc
 }
 
-export function collectReactStyleguideDocs<TComponent = unknown>(docsSource: ComponentDocsSource<TComponent>) {
-  return normalizeDocs(docsSource).filter(componentDoc => componentDoc.framework === 'react')
+export function collectStyleguideDocs<TComponent = unknown>(docsSource: ComponentDocsSource<TComponent>) {
+  return normalizeDocs(docsSource)
 }
 
-export function buildReactProjectManifest<TComponent = unknown>(
+export function buildProjectManifest<TComponent = unknown>(
   projectId: string,
   docsSource: ComponentDocsSource<TComponent>,
   previewBaseUrl?: string
 ): ProjectManifest {
-  const docs = collectReactStyleguideDocs(docsSource)
+  const docs = collectStyleguideDocs(docsSource)
 
   return {
     projectId,
@@ -27,7 +24,6 @@ export function buildReactProjectManifest<TComponent = unknown>(
     components: docs.map(componentDoc => ({
       projectId,
       componentId: componentDoc.id,
-      framework: componentDoc.framework,
       title: componentDoc.title,
       description: componentDoc.description,
       props: componentDoc.props,

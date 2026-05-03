@@ -10,7 +10,7 @@ import {
   type CompositionEditMap,
   type StyleguideRendererRegistry,
 } from 'styleguide-core'
-import { createDefaultReactRendererAdapter } from '../reactRenderer'
+import { createDefaultRendererAdapter } from '../renderer'
 import { renderMarkdown } from '../hooks/useMarkdown'
 import { usePreviewFrame } from '../hooks/usePreviewFrame'
 import { cx } from '../utils'
@@ -44,10 +44,9 @@ export function WidgetComponentDoc({
   const effectiveDoc = useMemo(() => (doc ? normalizeComponentDoc(doc as ComponentDoc) : undefined), [doc])
   const effectiveComponent = component ?? effectiveDoc?.component
   const effectiveRegistry = useMemo(() => {
-    return rendererRegistry ?? createRendererRegistry([createDefaultReactRendererAdapter()])
+    return rendererRegistry ?? createRendererRegistry([createDefaultRendererAdapter()])
   }, [rendererRegistry])
   const renderedDescription = useMemo(() => renderMarkdown(effectiveDoc?.description), [effectiveDoc?.description])
-  const compositionTabLabel = effectiveDoc?.composition?.kind === 'children' ? 'Children' : 'Slots'
   const resolvedBreakpoints = useMemo<DeviceBreakpoints>(() => {
     const merged = {
       mobile: DEFAULT_BREAKPOINTS.mobile,
@@ -72,8 +71,8 @@ export function WidgetComponentDoc({
   const [activeTab, setActiveTabState] = useState<Tab>('props')
 
   const compositionContent = useMemo(() => {
-    return getResolvedCompositionContent(effectiveDoc?.composition?.kind, compositionEdits)
-  }, [compositionEdits, effectiveDoc?.composition?.kind])
+    return getResolvedCompositionContent(compositionEdits)
+  }, [compositionEdits])
 
   const previewDoc = useMemo(() => {
     if (!effectiveDoc || !effectiveComponent) {
@@ -178,15 +177,12 @@ export function WidgetComponentDoc({
   return (
     <div className="component-doc">
       <header className="component-doc-header">
-        <p className="component-doc-eyebrow">{effectiveDoc.framework} component</p>
+        <p className="component-doc-eyebrow">component</p>
         <h2 className="component-doc-title">{effectiveDoc.title}</h2>
         <div className="component-doc-meta">
           <span className="component-doc-badge">props {effectiveDoc.props.length}</span>
           <span className="component-doc-badge">events {effectiveDoc.events.length}</span>
-          <span className="component-doc-badge">
-            {effectiveDoc.composition?.kind === 'children' ? 'children' : 'slots'}{' '}
-            {effectiveDoc.composition?.entries.length ?? 0}
-          </span>
+          <span className="component-doc-badge">children {effectiveDoc.composition?.entries.length ?? 0}</span>
         </div>
       </header>
 
@@ -218,7 +214,7 @@ export function WidgetComponentDoc({
             Events
           </button>
           <button className={tabClass(activeTab, 'composition')} onClick={() => setActiveTab('composition')}>
-            {compositionTabLabel}
+            Children
           </button>
         </div>
 

@@ -84,33 +84,12 @@
 }
 
 .nav-tab-copy {
-  display: flex;
   min-width: 0;
   flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
 }
 
 .nav-tab-title {
   min-width: 0;
-}
-
-.nav-tab-framework {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 1.4rem;
-  border: 1px solid rgba(248, 244, 234, 0.14);
-  border-radius: 999px;
-  background: rgba(248, 244, 234, 0.06);
-  color: var(--sg-text-soft);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  padding: 0.08rem 0.48rem;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .nav-tab-dot {
@@ -557,7 +536,7 @@
 }
 
 .char-counter,
-.no-slots {
+.no-composition {
   color: var(--sg-text-soft);
   font-size: 0.86rem;
   margin-top: 0.6rem;

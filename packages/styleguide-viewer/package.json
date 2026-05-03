@@ -1,5 +1,5 @@
 {
-  "name": "styleguide-viewer-react",
+  "name": "styleguide-viewer",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "styleguide-core": "workspace:*",
-    "styleguide-runtime-react": "workspace:*",
+    "styleguide-runtime": "workspace:*",
     "styleguide-schema": "workspace:*",
     "highlight.js": "^11.9.0",
     "markdown-it": "^13.0.0"

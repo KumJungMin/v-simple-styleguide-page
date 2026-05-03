@@ -16,8 +16,8 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styleguide-exporter-react": "workspace:*",
-    "styleguide-viewer-react": "workspace:*"
+    "styleguide-exporter": "workspace:*",
+    "styleguide-viewer": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",

@@ -1,6 +1,6 @@
 # Styleguide Study Guide
 
-이 문서는 현재 React 기준 구조를 처음 보는 사람이 실행 흐름을 따라가기 위한 짧은 학습 노트입니다.
+이 문서는 현재 구조를 처음 보는 사람이 실행 흐름을 따라가기 위한 짧은 학습 노트입니다.
 
 ## 1. 데모 앱 시작점
 
@@ -12,17 +12,17 @@
 
 흐름은 단순합니다.
 
-1. `main.tsx`가 React root를 만들고 `App`을 렌더링합니다.
+1. `main.tsx`가 root를 만들고 `App`을 렌더링합니다.
 2. `App.tsx`가 토큰 화면과 컴포넌트 스펙 화면을 전환합니다.
 3. 컴포넌트 스펙 화면은 `StyleguideContainer`에 `componentDocs`를 전달합니다.
-4. `componentDocs`는 React 문서 배열입니다.
+4. `componentDocs`는 문서 배열입니다.
 
 ## 2. 문서 한 개 보기
 
 추천 파일:
 
-- `apps/styleguide-demo/src/react/docs/button.doc.ts`
-- `apps/styleguide-demo/src/react/components/ReactButton.ts`
+- `apps/styleguide-demo/src/component-docs/button.doc.ts`
+- `apps/styleguide-demo/src/components/Button.ts`
 - `packages/styleguide-schema/src/docs/component-docs.ts`
 
 문서는 컴포넌트, props, events, children 예시를 하나의 객체로 설명합니다.
@@ -31,9 +31,9 @@
 
 추천 파일:
 
-- `packages/styleguide-viewer-react/src/components/StyleguideContainer.tsx`
-- `packages/styleguide-viewer-react/src/components/WidgetComponentDoc.tsx`
-- `packages/styleguide-viewer-react/src/hooks/usePreviewFrame.ts`
+- `packages/styleguide-viewer/src/components/StyleguideContainer.tsx`
+- `packages/styleguide-viewer/src/components/WidgetComponentDoc.tsx`
+- `packages/styleguide-viewer/src/hooks/usePreviewFrame.ts`
 
 `StyleguideContainer`는 문서를 normalize 하고, 선택된 문서를 `WidgetComponentDoc`에 넘깁니다. `WidgetComponentDoc`는 props 편집, event log, children 편집, iframe preview를 관리합니다.
 
@@ -43,6 +43,6 @@
 
 - `packages/styleguide-core/src/preview/bootstrapHtml.ts`
 - `packages/styleguide-core/src/preview/rendererRegistry.ts`
-- `packages/styleguide-runtime-react/src/reactRendererAdapter.ts`
+- `packages/styleguide-runtime/src/rendererAdapter.ts`
 
-preview는 iframe 안에서 분리 실행됩니다. 공통 코어가 iframe 문서를 준비하고, React runtime adapter가 실제 React 컴포넌트를 mount 합니다.
+preview는 iframe 안에서 분리 실행됩니다. 공통 코어가 iframe 문서를 준비하고, runtime adapter가 실제 컴포넌트를 mount 합니다.

@@ -3,4 +3,4 @@ import './styles/styleguide-viewer.css'
 
 export { StyleguideContainer } from './components/StyleguideContainer'
 export { WidgetComponentDoc } from './components/WidgetComponentDoc'
-export { createDefaultReactRendererAdapter } from './reactRenderer'
+export { createDefaultRendererAdapter } from './renderer'

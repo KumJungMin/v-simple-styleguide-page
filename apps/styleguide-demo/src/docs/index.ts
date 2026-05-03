@@ -1,3 +1,3 @@
-import { reactDocs } from '../react/docs'
+import { docs } from '../component-docs'
 
-export const componentDocs = reactDocs
+export const componentDocs = docs

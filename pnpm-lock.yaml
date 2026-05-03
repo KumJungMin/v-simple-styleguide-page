@@ -16,12 +16,12 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      styleguide-exporter-react:
+      styleguide-exporter:
         specifier: workspace:*
-        version: link:../../packages/styleguide-exporter-react
-      styleguide-viewer-react:
+        version: link:../../packages/styleguide-exporter
+      styleguide-viewer:
         specifier: workspace:*
-        version: link:../../packages/styleguide-viewer-react
+        version: link:../../packages/styleguide-viewer
     devDependencies:
       '@types/react':
         specifier: ^18.3.11
@@ -46,7 +46,7 @@ importers:
         specifier: ^5.0.0
         version: 5.8.3
 
-  packages/styleguide-exporter-react:
+  packages/styleguide-exporter:
     dependencies:
       styleguide-core:
         specifier: workspace:*
@@ -59,7 +59,7 @@ importers:
         specifier: ^5.0.0
         version: 5.8.3
 
-  packages/styleguide-runtime-react:
+  packages/styleguide-runtime:
     dependencies:
       styleguide-core:
         specifier: workspace:*
@@ -75,7 +75,7 @@ importers:
         specifier: ^5.0.0
         version: 5.8.3
 
-  packages/styleguide-viewer-react:
+  packages/styleguide-viewer:
     dependencies:
       highlight.js:
         specifier: ^11.9.0
@@ -92,9 +92,9 @@ importers:
       styleguide-core:
         specifier: workspace:*
         version: link:../styleguide-core
-      styleguide-runtime-react:
+      styleguide-runtime:
         specifier: workspace:*
-        version: link:../styleguide-runtime-react
+        version: link:../styleguide-runtime
       styleguide-schema:
         specifier: workspace:*
         version: link:../styleguide-schema

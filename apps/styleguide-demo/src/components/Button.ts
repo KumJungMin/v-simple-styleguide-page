@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
-export interface ReactButtonProps {
+export interface ButtonProps {
   variant?: ButtonVariant
   size?: ButtonSize
   disabled?: boolean
@@ -81,14 +81,14 @@ function createChildContent(children: ReactNode): ReactNode {
   return children
 }
 
-export default function ReactButton({
+export default function Button({
   variant = 'primary',
   size = 'md',
   disabled = false,
   block = false,
-  children = 'React CTA',
+  children = 'CTA',
   onClick,
-}: ReactButtonProps) {
+}: ButtonProps) {
   const style = {
     ...baseStyle,
     ...sizeStyles[size],

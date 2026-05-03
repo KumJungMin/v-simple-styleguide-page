@@ -46,7 +46,7 @@ export function usePreviewFrame(options: PreviewFrameOptions) {
 
     const rendererAdapter = options.rendererRegistry.getRendererForDoc(componentDoc)
     if (!rendererAdapter) {
-      throw new Error(`No renderer registered for framework "${componentDoc.framework}".`)
+      throw new Error('No renderer registered.')
     }
 
     bootstrapPreviewDocument(targetDocument)

@@ -13,7 +13,6 @@ interface CompositionTabProps {
 }
 
 export function CompositionTab({
-  composition,
   entries,
   activeEntry,
   currentEntryEdit,
@@ -22,16 +21,13 @@ export function CompositionTab({
   onCancelEntryEdit,
   onCurrentEntryEditChange,
 }: CompositionTabProps) {
-  const entryLabel = composition?.kind === 'children' ? 'children' : 'slot'
-  const headingLabel = composition?.kind === 'children' ? 'Children' : 'Slots'
-
   function handleCurrentEntryEditChange(event: ChangeEvent<HTMLTextAreaElement>) {
     onCurrentEntryEditChange(event.target.value)
   }
 
   return (
     <div className="tab-content composition-tab">
-      <h3>{headingLabel}</h3>
+      <h3>Children</h3>
       {entries?.length ? (
         <>
           <table className="slot-table" aria-label="Component composition">
@@ -66,7 +62,7 @@ export function CompositionTab({
                   <div className="editor-title">
                     <div className="editor-indicator"></div>
                     <h4>
-                      {activeEntry} {entryLabel} edit
+                      {activeEntry} children edit
                     </h4>
                   </div>
                   <div className="editor-actions">
@@ -83,7 +79,7 @@ export function CompositionTab({
                     value={currentEntryEdit}
                     onChange={handleCurrentEntryEditChange}
                     className="slot-textarea"
-                    placeholder={`${activeEntry} ${entryLabel} content...`}
+                    placeholder={`${activeEntry} children content...`}
                   />
                   <div className="char-counter">{currentEntryEdit.length} chars</div>
                 </div>
@@ -92,7 +88,7 @@ export function CompositionTab({
           )}
         </>
       ) : (
-        <p className="no-slots">This component does not expose editable composition content.</p>
+        <p className="no-composition">This component does not expose editable composition content.</p>
       )}
     </div>
   )

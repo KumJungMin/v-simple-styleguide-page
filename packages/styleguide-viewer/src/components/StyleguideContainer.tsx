@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { ComponentDocsSource, NormalizedComponentDoc } from 'styleguide-schema'
 import { createRendererRegistry, normalizeDocs, type StyleguideRendererAdapter } from 'styleguide-core'
-import { createDefaultReactRendererAdapter } from '../reactRenderer'
+import { createDefaultRendererAdapter } from '../renderer'
 import type { Device } from './DeviceControls'
 import { WidgetComponentDoc } from './WidgetComponentDoc'
 import { cx } from '../utils'
@@ -21,7 +21,7 @@ export function StyleguideContainer({
   const effectiveDocs = useMemo(() => normalizeStyleguideDocs(docs), [docs])
   const activeDoc = effectiveDocs[activeDocIndex] ?? effectiveDocs[0]
   const rendererRegistry = useMemo(() => {
-    return createRendererRegistry([createDefaultReactRendererAdapter(), ...renderers])
+    return createRendererRegistry([createDefaultRendererAdapter(), ...renderers])
   }, [renderers])
 
   useEffect(() => {
@@ -45,7 +45,6 @@ export function StyleguideContainer({
                 <span className="nav-tab-dot" aria-hidden="true"></span>
                 <span className="nav-tab-copy">
                   <span className="nav-tab-title">{doc.title}</span>
-                  <span className="nav-tab-framework">{doc.framework}</span>
                 </span>
               </button>
             ))}

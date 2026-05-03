@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { StyleguideContainer } from 'styleguide-viewer-react'
+import { StyleguideContainer } from 'styleguide-viewer'
 import { componentDocs } from './docs'
-import ColorTokensPage from './react/components/ColorTokensPage'
+import ColorTokensPage from './components/ColorTokensPage'
 
 type DemoView = 'tokens' | 'components'
 
@@ -19,7 +19,7 @@ export default function App() {
     return {
       breadcrumb: 'Design System / Components',
       title: 'Component spec',
-      summary: 'React 컴포넌트를 React 기반 스펙 뷰어에서 확인하고 Props, 이벤트, 프리뷰 사이즈를 함께 조정합니다.',
+      summary: '컴포넌트 스펙을 확인하고 Props, 이벤트, 프리뷰 사이즈를 함께 조정합니다.',
     }
   }, [activeView])
 

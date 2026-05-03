@@ -1,4 +1,4 @@
-import type { EventDefinition, FrameworkKind } from 'styleguide-schema'
+import type { EventDefinition } from 'styleguide-schema'
 
 export interface StyleguideEventLogEntry {
   event: string
@@ -7,20 +7,18 @@ export interface StyleguideEventLogEntry {
 }
 
 export interface EventHandlerPropsOptions {
-  framework: FrameworkKind
   events?: EventDefinition[]
   onEvent: (eventLogEntry: StyleguideEventLogEntry) => void
 }
 
 export function buildEventHandlerProps({
-  framework,
   events = [],
   onEvent,
 }: EventHandlerPropsOptions): Record<string, (...args: unknown[]) => void> {
   const handlers: Record<string, (...args: unknown[]) => void> = {}
 
   events.forEach(eventDefinition => {
-    const handlerPropName = resolveEventHandlerPropName(eventDefinition, framework)
+    const handlerPropName = resolveEventHandlerPropName(eventDefinition)
 
     handlers[handlerPropName] = (...args: unknown[]) => {
       onEvent({
@@ -35,14 +33,13 @@ export function buildEventHandlerProps({
 }
 
 export function resolveEventHandlerPropName(
-  eventDefinition: EventDefinition,
-  framework: FrameworkKind
+  eventDefinition: EventDefinition
 ): string {
   if (eventDefinition.handlerPropName) {
     return eventDefinition.handlerPropName
   }
 
-  if (framework === 'react' && /^on[A-Z]/.test(eventDefinition.name)) {
+  if (/^on[A-Z]/.test(eventDefinition.name)) {
     return eventDefinition.name
   }
 

@@ -1,10 +1,10 @@
-import { defineReactComponentDoc } from 'styleguide-exporter-react'
-import ReactButton from '../components/ReactButton'
+import { defineComponentDoc } from 'styleguide-exporter'
+import Button from '../components/Button'
 
-export default defineReactComponentDoc({
-  title: 'Button React',
-  description: 'React runtime으로 렌더링되는 버튼 예시입니다. Props, 이벤트, children 편집을 같은 스펙 화면에서 확인할 수 있습니다.',
-  component: ReactButton,
+export default defineComponentDoc({
+  title: 'Button',
+  description: 'Props, 이벤트, children 편집을 같은 스펙 화면에서 확인할 수 있는 버튼 예시입니다.',
+  component: Button,
   props: [
     {
       name: 'variant',
@@ -47,7 +47,6 @@ export default defineReactComponentDoc({
     },
   ],
   composition: {
-    kind: 'children',
     entries: [
       {
         name: 'default',
@@ -56,6 +55,6 @@ export default defineReactComponentDoc({
     ],
   },
   compositionExamples: {
-    default: 'React CTA',
+    default: 'CTA',
   },
 })

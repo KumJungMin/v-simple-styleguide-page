@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 import type { ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createReactRendererAdapter, type ReactRendererBridge } from 'styleguide-runtime-react'
+import { createRendererAdapter, type RendererBridge } from 'styleguide-runtime'
 
 function normalizeChildren(children?: unknown): ReactNode {
   if (typeof children === 'string') {
@@ -11,8 +11,8 @@ function normalizeChildren(children?: unknown): ReactNode {
   return children as ReactNode
 }
 
-export function createDefaultReactRendererAdapter() {
-  const reactRendererBridge: ReactRendererBridge = {
+export function createDefaultRendererAdapter() {
+  const rendererBridge: RendererBridge = {
     render({ component, mountTarget, props, children }) {
       const root = createRoot(mountTarget)
       const normalizedChildren = normalizeChildren(children)
@@ -27,5 +27,5 @@ export function createDefaultReactRendererAdapter() {
     },
   }
 
-  return createReactRendererAdapter(reactRendererBridge)
+  return createRendererAdapter(rendererBridge)
 }

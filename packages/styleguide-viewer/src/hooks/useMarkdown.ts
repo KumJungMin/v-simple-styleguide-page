@@ -1,10 +1,5 @@
 import hljs from 'highlight.js'
-import xmlLang from 'highlight.js/lib/languages/xml'
 import MarkdownIt from 'markdown-it'
-
-if (!hljs.getLanguage('vue')) {
-  hljs.registerLanguage('vue', xmlLang)
-}
 
 const markdownRenderer = new MarkdownIt({
   highlight: (str: string, lang: string): string => {
