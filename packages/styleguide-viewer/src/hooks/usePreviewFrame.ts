@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { NormalizedComponentDoc } from 'styleguide-schema'
+import type { NormalizedComponentDoc } from '../types'
 import {
   bootstrapPreviewDocument,
   cloneAndInjectParentStyles,
@@ -7,7 +7,7 @@ import {
   type StyleguideEventLogEntry,
   type StyleguideRendererInstance,
   type StyleguideRendererRegistry,
-} from 'styleguide-core'
+} from '../core'
 
 export interface PreviewFrameOptions {
   doc?: NormalizedComponentDoc

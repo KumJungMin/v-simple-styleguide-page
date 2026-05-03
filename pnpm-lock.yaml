@@ -16,9 +16,6 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      styleguide-exporter:
-        specifier: workspace:*
-        version: link:../../packages/styleguide-exporter
       styleguide-viewer:
         specifier: workspace:*
         version: link:../../packages/styleguide-viewer
@@ -36,45 +33,6 @@ importers:
         specifier: ^4.0.0
         version: 4.5.14(@types/node@20.19.0)
 
-  packages/styleguide-core:
-    dependencies:
-      styleguide-schema:
-        specifier: workspace:*
-        version: link:../styleguide-schema
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.3
-
-  packages/styleguide-exporter:
-    dependencies:
-      styleguide-core:
-        specifier: workspace:*
-        version: link:../styleguide-core
-      styleguide-schema:
-        specifier: workspace:*
-        version: link:../styleguide-schema
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.3
-
-  packages/styleguide-runtime:
-    dependencies:
-      styleguide-core:
-        specifier: workspace:*
-        version: link:../styleguide-core
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.3
-
-  packages/styleguide-schema:
-    devDependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.3
-
   packages/styleguide-viewer:
     dependencies:
       highlight.js:
@@ -89,15 +47,6 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      styleguide-core:
-        specifier: workspace:*
-        version: link:../styleguide-core
-      styleguide-runtime:
-        specifier: workspace:*
-        version: link:../styleguide-runtime
-      styleguide-schema:
-        specifier: workspace:*
-        version: link:../styleguide-schema
     devDependencies:
       '@types/markdown-it':
         specifier: ^14.1.2

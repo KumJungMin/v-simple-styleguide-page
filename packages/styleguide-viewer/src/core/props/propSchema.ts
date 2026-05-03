@@ -1,4 +1,4 @@
-import type { PropControl, PropDefinition } from 'styleguide-schema'
+import type { PropControl, PropDefinition } from '../../types'
 import { enumValues, isBoolean, isNumber } from '../utils/typeUtils'
 
 export type InputMode = PropControl

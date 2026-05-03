@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react'
-import type { CompositionDefinition, CompositionEntryDefinition } from 'styleguide-schema'
+import type { CompositionDefinition, CompositionEntryDefinition } from '../types'
 
 interface CompositionTabProps {
   composition?: CompositionDefinition

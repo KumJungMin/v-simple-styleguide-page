@@ -1,4 +1,4 @@
-import type { EventDefinition } from 'styleguide-schema'
+import type { EventDefinition } from '../../types'
 
 export interface StyleguideEventLogEntry {
   event: string

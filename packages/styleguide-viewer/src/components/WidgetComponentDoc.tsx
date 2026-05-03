@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { ComponentDoc, NormalizedComponentDoc } from 'styleguide-schema'
+import type { ComponentDoc, NormalizedComponentDoc } from '../types'
 import {
   createInitialCompositionEdits,
   createRendererRegistry,
@@ -9,7 +9,7 @@ import {
   normalizeComponentDoc,
   type CompositionEditMap,
   type StyleguideRendererRegistry,
-} from 'styleguide-core'
+} from '../core'
 import { createDefaultRendererAdapter } from '../renderer'
 import { renderMarkdown } from '../hooks/useMarkdown'
 import { usePreviewFrame } from '../hooks/usePreviewFrame'

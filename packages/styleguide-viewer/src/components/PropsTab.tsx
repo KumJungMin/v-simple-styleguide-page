@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react'
-import type { PropDefinition } from 'styleguide-schema'
-import { getInputMode, getSelectOptions, type InputMode } from 'styleguide-core'
+import type { PropDefinition } from '../types'
+import { getInputMode, getSelectOptions, type InputMode } from '../core'
 
 interface PropsTabProps {
   props: PropDefinition[]

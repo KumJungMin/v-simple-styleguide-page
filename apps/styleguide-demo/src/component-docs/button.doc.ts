@@ -1,4 +1,4 @@
-import { defineComponentDoc } from 'styleguide-exporter'
+import { defineComponentDoc } from 'styleguide-viewer'
 import Button from '../components/Button'
 
 export default defineComponentDoc({

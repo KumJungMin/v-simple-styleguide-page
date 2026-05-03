@@ -1,4 +1,4 @@
-import type { NormalizedComponentDoc } from 'styleguide-schema'
+import type { NormalizedComponentDoc } from '../../types'
 import type { ResolvedCompositionContent } from '../composition/compositionState'
 import type { StyleguideEventLogEntry } from '../events/eventBridge'
 

@@ -1,7 +1,7 @@
 import type {
   ComponentDoc,
   NormalizedComponentDoc,
-} from 'styleguide-schema'
+} from '../../types'
 
 export function normalizeComponentDoc<TComponent = unknown>(
   componentDoc: ComponentDoc<TComponent>

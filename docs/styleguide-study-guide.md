@@ -23,7 +23,7 @@
 
 - `apps/styleguide-demo/src/component-docs/button.doc.ts`
 - `apps/styleguide-demo/src/components/Button.ts`
-- `packages/styleguide-schema/src/docs/component-docs.ts`
+- `packages/styleguide-viewer/src/types/docs/component-docs.ts`
 
 문서는 컴포넌트, props, events, children 예시를 하나의 객체로 설명합니다.
 
@@ -41,8 +41,8 @@
 
 추천 파일:
 
-- `packages/styleguide-core/src/preview/bootstrapHtml.ts`
-- `packages/styleguide-core/src/preview/rendererRegistry.ts`
-- `packages/styleguide-runtime/src/rendererAdapter.ts`
+- `packages/styleguide-viewer/src/core/preview/bootstrapHtml.ts`
+- `packages/styleguide-viewer/src/core/preview/rendererRegistry.ts`
+- `packages/styleguide-viewer/src/rendererAdapter.ts`
 
 preview는 iframe 안에서 분리 실행됩니다. 공통 코어가 iframe 문서를 준비하고, runtime adapter가 실제 컴포넌트를 mount 합니다.

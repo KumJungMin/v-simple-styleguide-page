@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { ComponentDocsSource, NormalizedComponentDoc } from 'styleguide-schema'
-import { createRendererRegistry, normalizeDocs, type StyleguideRendererAdapter } from 'styleguide-core'
+import type { ComponentDocsSource, NormalizedComponentDoc } from '../types'
+import { createRendererRegistry, normalizeDocs, type StyleguideRendererAdapter } from '../core'
 import { createDefaultRendererAdapter } from '../renderer'
 import type { Device } from './DeviceControls'
 import { WidgetComponentDoc } from './WidgetComponentDoc'

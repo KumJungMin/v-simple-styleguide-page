@@ -1,5 +1,5 @@
-import type { EventDefinition } from 'styleguide-schema'
-import { formatTimestamp, type StyleguideEventLogEntry } from 'styleguide-core'
+import type { EventDefinition } from '../types'
+import { formatTimestamp, type StyleguideEventLogEntry } from '../core'
 
 interface EventsTabProps {
   events: EventDefinition[]

@@ -1,4 +1,4 @@
-import { buildEventHandlerProps, type StyleguideRendererAdapter } from 'styleguide-core'
+import { buildEventHandlerProps, type StyleguideRendererAdapter } from './core'
 
 export interface RendererBridge {
   render(options: {

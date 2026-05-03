@@ -13,9 +13,6 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "styleguide-core": "workspace:*",
-    "styleguide-runtime": "workspace:*",
-    "styleguide-schema": "workspace:*",
     "highlight.js": "^11.9.0",
     "markdown-it": "^13.0.0"
   },

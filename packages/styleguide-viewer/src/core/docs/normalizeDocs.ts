@@ -1,4 +1,4 @@
-import type { ComponentDoc, ComponentDocModule, ComponentDocsSource, NormalizedComponentDoc } from 'styleguide-schema'
+import type { ComponentDoc, ComponentDocModule, ComponentDocsSource, NormalizedComponentDoc } from '../../types'
 import { normalizeComponentDoc } from './normalizeComponentDoc'
 
 export function normalizeDocs<TComponent = unknown>(

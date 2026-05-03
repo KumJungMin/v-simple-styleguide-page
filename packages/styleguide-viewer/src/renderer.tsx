@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 import type { ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createRendererAdapter, type RendererBridge } from 'styleguide-runtime'
+import { createRendererAdapter, type RendererBridge } from './rendererAdapter'
 
 function normalizeChildren(children?: unknown): ReactNode {
   if (typeof children === 'string') {

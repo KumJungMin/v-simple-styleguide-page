@@ -1,5 +1,5 @@
-import type { ComponentDoc, ComponentDocsSource, ProjectManifest } from 'styleguide-schema'
-import { normalizeDocs } from 'styleguide-core'
+import type { ComponentDoc, ComponentDocsSource, ProjectManifest } from './types'
+import { normalizeDocs } from './core'
 
 export function defineComponentDoc<TComponent = unknown>(
   componentDoc: ComponentDoc<TComponent>

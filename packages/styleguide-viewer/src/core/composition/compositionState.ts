@@ -1,4 +1,4 @@
-import type { NormalizedComponentDoc } from 'styleguide-schema'
+import type { NormalizedComponentDoc } from '../../types'
 
 export type CompositionEditMap = Record<string, string>
 export type ResolvedCompositionContent = string
